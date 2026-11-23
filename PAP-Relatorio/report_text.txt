@@ -1,0 +1,835 @@
+=== DOCUMENT IMAGE COUNT: 41 images found in document rels ===
+
+[P3|Title] Nota Introdutória
+[P5|Normal] A Prova de Aptidão Profissional consiste na apresentação e defesa, perante um júri, de um projeto, consubstanciado num produto, material ou intelectual, numa intervenção ou numa atuação, bem como do respetivo relatório final de realização e apreciação crítica, demonstrativo de saberes e competências profissionais, adquiridos ao longo da formação e estruturante do futuro profissional.
+[P6|Normal] A sua realização constitui-se como um dos imperativos legais para a conclusão do curso profissional de (designação do curso), que confere uma dupla certificação: qualificação profissional de nível IV e o 12º ano como certificação escolar de nível secundário.
+[P7|Normal] A presente prova foi realizada na Escola Profissional de Braga no presente ano letivo e a sua defesa realizada, perante um júri final, nas datas estabelecidas no calendário escolar.
+[P16|Title] Dedicatória
+[P17|Normal] Dedico este trabalho a mim próprio, por todo o esforço e resiliência que investi para chegar até aqui.
+[P18|Normal] Dedico-o também, com especial carinho, à Professora Cecília Silva. O seu papel foi muito além das aulas: foi ela quem me ajudou a encontrar o cliente para este projeto e, no ano passado, foi incansável a ajudar-me a conseguir o meu estágio rapidamente quando eu estava mais atrasado. Este projeto também é dedicado à sua disponibilidade e por ter acreditado em mim.
+[P21|Title] Agradecimentos
+[P22|Normal] Gostaria de expressar a minha sincera gratidão a todas as pessoas que, de forma direta ou indireta, contribuíram para a realização deste projeto de Prova de Aptidão Profissional.
+[P23|Normal] Em primeiro lugar, um agradecimento muito especial à Professora Cecília Silva e ao Professor Manuel Ferreira, meu professor acompanhante. O vosso apoio constante, paciência e orientação foram os pilares fundamentais para o sucesso deste trabalho. Agradeço profundamente por tudo o que me ensinaram e pela forma como me ajudaram a evoluir ao longo de todo este percurso.
+[P24|Normal] Aos meus amigos e colegas, deixo o meu obrigado pelo apoio incondicional e pelo companheirismo demonstrado. As vossas ideias, críticas construtivas e incentivos foram essenciais para o desenvolvimento e aprimoramento da plataforma "Loja Online Kid to Kid Braga".
+[P25|Normal] Por fim, agradeço a todos os que estiveram envolvidos nesta caminhada. As vossas opiniões e contributos foram fundamentais para alcançar os resultados que hoje apresento com orgulho neste projeto final.
+[P35|TOC Heading] Índice
+[P36|toc 1] Introdução	13
+[P37|toc 1] 1.	Componente Teórica	18
+[P38|toc 2] 1.1	Linguagens de Programação e Ferramentas	18
+[P39|toc 3] 1.1.1	React	18
+[P40|toc 3] 1.1.2	Vite	18
+[P41|toc 3] 1.1.3	TypeScript	19
+[P42|toc 3] 1.1.4	JavaScript	19
+[P43|toc 3] 1.1.5	HTML (HTML5)	19
+[P44|toc 3] 1.1.6	CSS (Tailwind CSS)	20
+[P45|toc 3] 1.1.7	Radix UI e shadcn/ui	20
+[P46|toc 3] 1.1.8	React Router	20
+[P47|toc 3] 1.1.9	React Hook Form e Zod	21
+[P48|toc 3] 1.1.10	Bibliotecas Visuais (Recharts, Embla Carousel, Lucide e Sonner)	21
+[P49|toc 2] 1.2	Serviços e Aplicações para o desenvolvimento	22
+[P50|toc 3] 1.2.1	Visual Studio Code	22
+[P51|toc 3] 1.2.2	Node.js e pnpm	23
+[P52|toc 3] 1.2.3	Firebase	23
+[P53|toc 3] 1.2.4	Vercel e Firebase Hosting	23
+[P54|toc 3] 1.2.5	Notion	24
+[P55|toc 3] 1.2.6	Stripe	25
+[P56|toc 3] 1.2.7	Git e GitHub	25
+[P57|toc 3] 1.2.8	Google Gemini	25
+[P58|toc 3] 1.2.9	Vitest e React Testing Library	26
+[P59|toc 1] 2.	Componente Prática e Desenvolvimento	26
+[P60|toc 2] 2.1	Arquitetura do Sistema	27
+[P61|toc 3] 2.1.1	Estrutura do Projeto	28
+[P62|toc 4] 2.1.1.1	Diretório src/	29
+[P63|toc 4] 2.1.1.2	Diretório components/	29
+[P64|toc 4] 2.1.1.3	Diretório pages/	29
+[P65|toc 4] 2.1.1.4	Diretório services/	30
+[P66|toc 4] 2.1.1.5	Diretório hooks/	30
+[P67|toc 4] 2.1.1.6	Diretório contexts/	31
+[P68|toc 4] 2.1.1.7	Diretório types/	31
+[P69|toc 4] 2.1.1.8	Diretório lib/	31
+[P70|toc 3] 2.1.2	Configuração do Projeto	31
+[P71|toc 4] 2.1.2.1	vite.config.ts	31
+[P72|toc 4] 2.1.2.2	tsconfig.json	31
+[P73|toc 4] 2.1.2.3	tailwind.config.js	32
+[P74|toc 4] 2.1.2.4	package.json	32
+[P75|toc 4] 2.1.2.5	components.json	32
+[P76|toc 4] 2.1.2.6	firebase.json e .firebaserc	32
+[P77|toc 4] 2.1.2.7	firestore.rules e storage.rules	32
+[P78|toc 2] 2.2	Análise da Base de Dados	32
+[P79|toc 3] 2.2.1	Firestore Database	32
+[P80|toc 3] 2.2.2	Visão Geral das Coleções	33
+[P81|toc 4] 2.2.2.1	Características do Firestore	34
+[P82|toc 4] 2.2.2.2	Estrutura de Dados	34
+[P83|toc 3] 2.2.3	Detalhe das Coleções	34
+[P84|toc 4] 2.2.3.1	Coleção: products	35
+[P85|toc 4] 2.2.3.2	Coleção: users e sub-coleção addresses	37
+[P86|toc 4] 2.2.3.3	Coleção: orders	38
+[P87|toc 4] 2.2.3.4	Coleção: categories	39
+[P88|toc 4] 2.2.3.5	Coleção: reviews e reviewVotes	40
+[P89|toc 4] 2.2.3.6	Outras Coleções Importantes	40
+[P90|toc 3] 2.2.4	Relações entre Coleções	40
+[P91|toc 3] 2.2.5	Firebase Security Rules	41
+[P92|toc 4] 2.2.5.1	Regras de Administração e Staff	41
+[P93|toc 4] 2.2.5.2	Segurança do Perfil e Carrinho	41
+[P94|toc 4] 2.2.5.3	Proteção do Processo de Encomenda (orders)	41
+[P95|toc 3] 2.2.6	Índices e Otimização	41
+[P96|toc 3] 2.2.7	Backup e Recuperação	42
+[P97|toc 2] 2.3	Análise do Código Fonte	42
+[P98|toc 3] 2.3.1	Serviços Implementados	42
+[P99|toc 4] 2.3.1.1	authService.ts	42
+[P100|toc 4] 2.3.1.2	productService.ts	42
+[P101|toc 4] 2.3.1.3	orderService.ts	43
+[P102|toc 4] 2.3.1.4	paymentService.ts	43
+[P103|toc 4] 2.3.1.5	storageService.ts	43
+[P104|toc 4] 2.3.1.6	Outros Serviços	43
+[P105|toc 3] 2.3.2	Componentes React	44
+[P106|toc 4] 2.3.2.1	Componentes de UI Base (src/components/ui/)	44
+[P107|toc 4] 2.3.2.2	Componentes de Layout e Estrutura (src/components/layout/ e src/components/)	44
+[P108|toc 4] 2.3.2.3	Componentes de Produto e Interação (src/components/product/)	44
+[P109|toc 4] 2.3.2.4	Componentes de Autenticação e Proteção (src/components/auth/)	44
+[P110|toc 4] 2.3.2.5	Componentes Administrativos (src/components/admin/)	45
+[P111|toc 3] 2.3.3	Hooks Personalizados	45
+[P112|toc 4] 2.3.3.1	usePageTitle.ts	45
+[P113|toc 3] 2.3.4	Contextos React	45
+[P114|toc 4] 2.3.4.1	AuthContext.tsx	45
+[P115|toc 4] 2.3.4.2	CartContext.tsx	45
+[P116|toc 4] 2.3.4.3	FavoritesContext.tsx	46
+[P117|toc 4] 2.3.4.4	ThemeContext.tsx e AdminThemeContext.tsx	46
+[P118|toc 3] 2.3.5	Configuração de Rotas	46
+[P119|toc 3] 2.3.6	Cloud Functions (Backend)	47
+[P120|toc 2] 2.4	Funcionalidades da Plataforma	48
+[P121|toc 3] 2.4.1	Sistema de Autenticação	48
+[P122|toc 4] 2.4.1.1	Registo de Utilizadores	49
+[P123|toc 4] 2.4.1.2	Login	50
+[P124|toc 4] 2.4.1.3	Recuperação de Password	51
+[P125|toc 4] 2.4.1.4	Perfil do Utilizador	52
+[P126|toc 3] 2.4.2	Catálogo de Produtos	53
+[P127|toc 4] 2.4.2.1	Listagem de Produtos	54
+[P128|toc 4] 2.4.2.2	Filtros de Produtos	54
+[P129|toc 4] 2.4.2.3	Ordenação	55
+[P130|toc 4] 2.4.2.4	Paginação	55
+[P131|toc 4] 2.4.2.5	Página de Detalhe do Produto	56
+[P132|toc 4] 2.4.2.6	Pesquisa	56
+[P133|toc 3] 2.4.3	Carrinho de Compras	56
+[P134|toc 4] 2.4.3.1	Adicionar ao Carrinho	56
+[P135|toc 4] 2.4.3.2	Visualizar Carrinho	56
+[P136|toc 4] 2.4.3.3	Gerir Itens do Carrinho	56
+[P137|toc 4] 2.4.3.4	Persistência do Carrinho	56
+[P138|toc 4] 2.4.3.5	Validação de Stock	56
+[P139|toc 3] 2.4.4	Processo de Checkout	57
+[P140|toc 4] 2.4.4.1	Resumo do Carrinho	57
+[P141|toc 4] 2.4.4.2	Informações de Envio	57
+[P142|toc 4] 2.4.4.3	Método de Envio	57
+[P143|toc 4] 2.4.4.4	Cupões de Desconto	57
+[P144|toc 4] 2.4.4.5	Pagamento com Stripe	57
+[P145|toc 4] 2.4.4.6	Confirmação de Encomenda	57
+[P146|toc 3] 2.4.5	Painel Administrativo	58
+[P147|toc 4] 2.4.5.1	Dashboard e Analytics	58
+[P148|toc 4] 2.4.5.2	Gestão de Produtos e Página Seed	59
+[P149|toc 4] 2.4.5.3	Gestão de Encomendas	59
+[P150|toc 4] 2.4.5.4	Gestão de Utilizadores e Clientes	59
+[P151|toc 4] 2.4.5.5	Gestão de Categorias e Cupões	60
+[P152|toc 4] 2.4.5.6	Moderação de Avaliações e Contactos	60
+[P153|toc 4] 2.4.5.7	Newsletter e Notificações em Tempo Real	60
+[P154|toc 2] 2.5	Implementação Técnica Detalhada	60
+[P155|toc 3] 2.5.1	Configuração do Firebase	60
+[P156|toc 4] 2.5.1.1	Criação do Projeto Firebase	60
+[P157|toc 4] 2.5.1.2	Configuração da Aplicação Web	61
+[P158|toc 4] 2.5.1.3	Variáveis de Ambiente	61
+[P159|toc 3] 2.5.2	Integração com Stripe	62
+[P160|toc 4] 2.5.2.1	Configuração da Conta Stripe	62
+[P161|toc 4] 2.5.2.2	Fluxo de Pagamento	62
+[P162|toc 4] 2.5.2.3	Webhooks Stripe	62
+[P163|toc 3] 2.5.3	Otimizações de Performance	62
+[P164|toc 4] 2.5.3.1	Lazy Loading	63
+[P165|toc 4] 2.5.3.2	Code Splitting	63
+[P166|toc 4] 2.5.3.3	Otimização de Imagens	63
+[P167|toc 4] 2.5.3.4	Caching	63
+[P168|toc 4] 2.5.3.5	Paginação	63
+[P169|toc 3] 2.5.4	Segurança	63
+[P170|toc 4] 2.5.4.1	Autenticação Segura	64
+[P171|toc 4] 2.5.4.2	Regras de Segurança Firestore	64
+[P172|toc 4] 2.5.4.3	Proteção XSS	65
+[P173|toc 4] 2.5.4.4	HTTPS	65
+[P174|toc 3] 2.5.5	Acessibilidade	65
+[P175|toc 3] 2.5.6	Responsividade	65
+[P176|toc 2] 2.6	Testes e Validação	65
+[P177|toc 3] 2.6.1	Tipos de Testes	65
+[P178|toc 3] 2.6.2	Cenários de Teste	66
+[P179|toc 3] 2.6.3	Resultados dos Testes e Resolução de Problemas	66
+[P180|toc 3] 2.6.4	Checklist de Lançamento	66
+[P181|toc 2] 2.7	Análise e Resultados	67
+[P182|toc 3] 2.7.1	Cumprimento dos Objetivos	67
+[P183|toc 3] 2.7.2	Dificuldades Encontradas	67
+[P184|toc 3] 2.7.3	Resultados Alcançados e Aprendizagens	68
+[P185|toc 1] Conclusão	70
+[P186|toc 1] Bibliografia	71
+[P187|toc 1] Anexos	73
+[P190|Title] Índice de Figuras
+[P191|table of figures] Figura 1 - Logotipo React	18
+[P192|table of figures] Figura 2 - Logótipo Vite	18
+[P193|table of figures] Figura 3 - Logótipo TypeScript	19
+[P194|table of figures] Figura 4 - Logótipo JavaScript	19
+[P195|table of figures] Figura 5 - Logótipo HTML	19
+[P196|table of figures] Figura 6 - Logótipo Tailwind CSS	20
+[P197|table of figures] Figura 7 - Logótipos Radix UI e shadcn/ui	20
+[P198|table of figures] Figura 8 - Logótipo React Router	21
+[P199|table of figures] Figura 9 - Logótipos React Hook Form e Zod	21
+[P200|table of figures] Figura 10 - Logótipos Bibliotecas Visuais (Recharts, Embla Carousel, Lucide e Sonner)	22
+[P201|table of figures] Figura 11 - Logótipo Visual Studio Code	22
+[P202|table of figures] Figura 12 - Logótipo Node.js	23
+[P203|table of figures] Figura 13 - Logótipo Firebase	23
+[P204|table of figures] Figura 14 - Logótipo Vercel	24
+[P205|table of figures] Figura 15 - Logótipo Notion	24
+[P206|table of figures] Figura 16 - Logótipo Stripe	25
+[P207|table of figures] Figura 17 - Logótipo GitHub	25
+[P208|table of figures] Figura 18 - Logótipo Google Gemini	26
+[P209|table of figures] Figura 19 - Logótipos Vitest e React Testing Library	26
+[P210|table of figures] Figura 20 - Firebase Console — Firestore com as coleções	35
+[P211|table of figures] Figura 21 - Firebase Functions — lista das Cloud Functions deployed	48
+[P212|table of figures] Figura 22 - Página Inicial (Homepage) — hero slider + categorias	53
+[P213|table of figures] Figura 23 - Firebase Authentication — lista de utilizadores registados	61
+[P214|table of figures] Figura 24 - Auditoria da estrutura semântica da Homepage através da extensão HeadingsMap, evidenciando a hierarquia de títulos (H1-H4).	69
+[P216|Heading 1] Introdução
+[P217|Normal] Fundamentação
+[P218|Normal] Escolhi criar a Loja Online Kid to Kid Braga, porque notei que existia um problema que precisava de ser resolvido. A ideia começou na escola, com o meu projeto "EcoVogue" (no programa Junior Achievement), onde já trabalhava a reutilização de roupa. Agora, decidi transformar essa ideia num produto real e profissional.
+[P220|Normal] O grande problema é que a loja Kid to Kid, em Braga, não tem um catálogo na internet. Hoje em dia, isso faz muita falta. Para os clientes — principalmente grávidas ou pais com bebés de colo — é muito cansativo ter de ir à loja de propósito só para ver se existe um carrinho ou uma peça de roupa específica. Muitas vezes, fazem a viagem e não encontram o que procuram.
+[P222|Normal] A minha solução foi criar um site moderno para resolver isto. O objetivo é facilitar a vida aos pais, permitindo-lhes ver os artigos em casa, no telemóvel, antes de saírem. Ao mesmo tempo, o site ajuda a promover a economia circular, incentivando a compra de artigos em segunda mão.
+[P224|Normal] Na parte técnica, usei as ferramentas mais modernas para garantir que o site é rápido e não encrava (funciona como uma Single Page Application):
+[P226|Normal] Na parte visual (o que o cliente vê): Construí a estrutura com HTML e Tailwind CSS para o site ficar bonito e organizado. Usei TypeScript e React (com Vite) para que as páginas mudem instantaneamente quando se clica, sem esperar.
+[P228|Normal] Na parte dos dados (os bastidores): Usei Node.js e Firebase. Estas tecnologias garantem que o sistema de login é seguro e, o mais importante, que o stock está sempre atualizado: se um produto for vendido, sai logo da lista.
+[P230|Normal] Basicamente, juntei o útil ao agradável: usei a melhor tecnologia que aprendi para modernizar uma loja local e ajudar as famílias de Braga.
+[P233|Normal] Objetivos
+[P234|Normal] Objetivos Gerais:
+[P235|Normal] Demonstrar na prática tudo o que aprendi sobre programação e design ao longo dos 3 anos na EPB.
+[P236|Normal] Aprender a organizar e planear um projeto grande do início ao fim, cumprindo prazos.
+[P237|Normal] Desenvolver capacidade para resolver erros de código sozinho e procurar soluções para problemas técnicos.
+[P238|Normal] Criar um site útil que incentive a reutilização de roupa e ajude a evitar o desperdício (economia circular).
+[P240|Normal] Objetivos Específicos:
+[P241|Normal] Construir um site visualmente atrativo e responsivo (que funcione bem no telemóvel) utilizando React (com Vite) e Tailwind CSS.
+[P242|Normal] Utilizar o Node.js e Firebase para criar contas de utilizador, fazer login seguro e guardar os dados dos produtos na "nuvem".
+[P243|Normal] Criar um catálogo onde seja fácil filtrar roupa (por idade, género e marca) e um carrinho de compras funcional.
+[P244|Normal] Integrar o sistema Stripe para simular pagamentos reais de forma segura.
+[P245|Normal] Desenvolver uma área reservada onde a loja possa adicionar novos produtos e gerir o stock de roupa usada de forma simples.
+[P252|Normal] Recursos
+[P256|Heading 1] Componente Teórica
+[P257|Normal] Para desenvolver a "Loja Online Kid to Kid Braga", escolhi um conjunto de tecnologias modernas e muito utilizadas no mercado de trabalho. O meu objetivo foi criar um site rápido, seguro e fácil de usar, simulando um ambiente profissional de desenvolvimento.
+[P258|Heading 2] [🖼️ IMAGE x1] Linguagens de Programação e Ferramentas
+[P259|Heading 3] React
+[P260|Normal] O React é a tecnologia principal do meu projeto. É uma biblioteca criada pelo Facebook que serve para construir interfaces. Escolhi o React porque me permite criar "peças" independentes (chamadas componentes), como o cabeçalho ou o cartão de produto, e reutilizá-las em várias páginas. Isso torna o site muito mais organizado e rápido, funcionando como uma aplicação única (Single Page Application).
+[P261|Caption] [🖼️ IMAGE x2] 
+[P263|Heading 3] [🖼️ IMAGE x1] Vite
+[P264|Normal] Para pôr o projeto a funcionar no meu computador, usei o Vite. Antigamente usavam-se ferramentas mais lentas, mas o Vite é muito rápido. Ele permite-me fazer alterações no código e vê-las a aparecer no site quase instantaneamente, o que poupou muito tempo durante o desenvolvimento.
+[P266|Normal] [🖼️ IMAGE x2] 
+[P268|Heading 3] [🖼️ IMAGE x1] TypeScript
+[P269|Normal] Todo o código do site foi escrito em TypeScript. É uma evolução do JavaScript que nos obriga a definir o "tipo" de dados (por exemplo, dizer que o preço tem de ser um número e não um texto). O uso do TypeScript foi essencial para evitar erros ("bugs") e garantir que o site não falha quando o utilizador está a navegar.
+[P270|Normal] [🖼️ IMAGE x2] 
+[P271|Normal] [🖼️ IMAGE x1] 
+[P273|Heading 3] JavaScript
+[P274|Normal] Embora tenha usado TypeScript, a base de tudo é o JavaScript. É a linguagem de programação da Web. É o JavaScript que dá "vida" ao site, permitindo coisas como adicionar produtos ao carrinho, abrir e fechar menus ou comunicar com a base de dados em tempo real.
+[P275|Normal] [🖼️ IMAGE x2] 
+[P276|Normal] [🖼️ IMAGE x1] 
+[P278|Heading 3] HTML (HTML5)
+[P279|Normal] O HTML é o esqueleto de qualquer página web. No meu projeto, o HTML define a estrutura do site (onde estão os títulos, as imagens e os botões). Como usei React, o HTML é gerado de forma dinâmica dentro do código JavaScript (formato JSX).
+[P281|Normal] [🖼️ IMAGE x2] 
+[P282|Normal] [🖼️ IMAGE x1] 
+[P283|Heading 3] CSS (Tailwind CSS)
+[P284|Normal] Para dar estilo ao site (cores, tamanhos, tipos de letra), usei o Tailwind CSS. Em vez de escrever ficheiros de estilo complicados à parte, o Tailwind permite-me desenhar o site diretamente no código, usando classes pré-definidas (como flex para alinhar ou text-blue para mudar a cor). Isto facilitou muito tornar o site responsivo, ou seja, adaptável a telemóveis.
+[P285|Normal] [🖼️ IMAGE x2] 
+[P289|Heading 3] Radix UI e shadcn/ui
+[P290|Normal] Para construir uma interface bonita de forma mais rápida, usei o shadcn/ui. Ao contrário das bibliotecas comuns, ele instala o código dos componentes diretamente no projeto, permitindo personalização total. Estes componentes são construídos por cima do Radix UI, o que garante que elementos complexos como menus móveis e janelas pop-up são acessíveis para todos os utilizadores (incluindo navegação por teclado e leitores de ecrã).
+[P291|Normal] [🖼️ IMAGE x1] 
+[P292|Caption] Figura 7 - Logótipos Radix UI e shadcn/ui
+[P293|Heading 3] React Router
+[P294|Normal] O React Router foi a biblioteca utilizada para gerir a navegação do site. É ele que permite criar as várias rotas (como a página de catálogo /produtos ou a página do carrinho /carrinho) e alternar entre elas instantaneamente, sem que a página fique branca a carregar.
+[P295|Normal] [🖼️ IMAGE x1] 
+[P296|Caption] Figura 8 - Logótipo React Router
+[P297|Heading 3] React Hook Form e Zod
+[P298|Normal] Para garantir que os dados que os clientes inserem (como moradas ou dados de registo) estão corretos, utilizei o React Hook Form em conjunto com o Zod. Enquanto o React Hook Form gere os campos do formulário de forma rápida, o Zod cria regras estritas de validação em tempo real (por exemplo, avisando imediatamente se o email não for válido).
+[P299|Normal] [🖼️ IMAGE x1] 
+[P300|Caption] Figura 9 - Logótipos React Hook Form e Zod
+[P301|Heading 3] Bibliotecas Visuais (Recharts, Embla Carousel, Lucide e Sonner)
+[P302|Normal] Para tornar a plataforma mais rica e apelativa, integrei algumas bibliotecas especializadas:
+[P303|Normal] Recharts: Utilizado para construir gráficos visuais e dinâmicos de vendas no painel de administração.
+[P304|Normal] Embla Carousel: O motor por trás dos sliders (carrosséis) de imagens da loja.
+[P305|Normal] Lucide React: Biblioteca de ícones modernos e leves espalhados por toda a interface.
+[P306|Normal] Sonner: Responsável por apresentar notificações visuais no canto do ecrã (toasts), informando o cliente sempre que uma ação tem sucesso ou dá erro.
+[P307|Normal] [🖼️ IMAGE x1] 
+[P308|Caption] Figura 10 - Logótipos Bibliotecas Visuais (Recharts, Embla Carousel, Lucide e Sonner)
+[P309|Heading 2] Serviços e Aplicações para o desenvolvimento
+[P310|Normal] Estas ferramentas foram usadas para escrever o código e para guardar os dados da loja.
+[P311|Normal] [🖼️ IMAGE x1] 
+[P312|Heading 3] Visual Studio Code
+[P313|Normal] O Visual Studio Code foi o programa (editor de código) onde escrevi todo o projeto. É leve e tem muitas extensões que ajudam a formatar o código e a encontrar erros enquanto escrevemos..
+[P315|Normal] [🖼️ IMAGE x2] 
+[P316|Heading 3] [🖼️ IMAGE x1] Node.js e pnpm
+[P317|Normal] O Node.js serviu como o ambiente de execução no servidor para construir o projeto e correr as Cloud Functions. Para gerir os pacotes e as bibliotecas do projeto, em vez do tradicional npm, utilizei o pnpm (configurado através de um ficheiro pnpm-workspace.yaml). O pnpm é muito mais rápido e eficiente, poupando espaço valioso no disco.
+[P318|Normal] [🖼️ IMAGE x2] 
+[P320|Heading 3] Firebase
+[P321|Normal] O Firebase da Google foi utilizado como o Backend (servidor e base de dados) principal do projeto, assegurando várias frentes:
+[P322|Normal] [🖼️ IMAGE x1] Authentication: Gestão de registos, logins e recuperação de passwords de forma segura.
+[P323|Normal] Firestore: Base de dados NoSQL onde guardei todos os dados da loja (produtos, utilizadores, encomendas, cupões).
+[P324|Normal] Storage: Armazenamento seguro das fotografias dos produtos e avatares dos clientes.
+[P325|Normal] [🖼️ IMAGE x2] Cloud Functions: Scripts a correr no servidor para validações de segurança e automações.
+[P329|Heading 3] Vercel e Firebase Hosting
+[P330|Normal] Para publicar a loja online para o mundo, adotei uma estratégia de segurança com um duplo deploy (lançamento): a Vercel e o Firebase Hosting. Ambas as plataformas oferecem alojamento rápido, seguro e integram perfeitamente com projetos em React e Vite.
+[P331|Normal] [🖼️ IMAGE x1] 
+[P332|Caption] Figura 14 - Logótipo Vercel
+[P333|Normal] [🖼️ IMAGE x1] 
+[P334|Heading 3] Notion
+[P335|Normal] Usei o Notion para planear o projeto. Foi aqui que criei a minha lista de tarefas, apontei ideias para o design e organizei o cronograma para garantir que cumpria os prazos da PAP.
+[P339|Normal] [🖼️ IMAGE x2] 
+[P341|Heading 3] [🖼️ IMAGE x1] Stripe
+[P342|Normal] Para simular os pagamentos, integrei a tecnologia Stripe. Embora esteja em "modo de teste", permite demonstrar como funciona uma compra real numa loja online, desde a introdução dos dados do cartão até à confirmação do pagamento.
+[P344|Normal] [🖼️ IMAGE x2] 
+[P347|Normal] [🖼️ IMAGE x1] 
+[P348|Heading 3] Git e GitHub
+[P349|Normal] O GitHub é onde o meu código está guardado na internet. Juntamente com o Git, serviu para fazer o controlo de versões. Assim, se eu cometesse um erro grave, podia sempre voltar atrás a uma versão anterior do site que estivesse a funcionar bem.
+[P350|Normal] [🖼️ IMAGE x2] 
+[P353|Heading 3] Google Gemini
+[P354|Normal] Utilizei o Google Gemini como um assistente de inteligência artificial durante todo o projeto. Esta ferramenta funcionou como um "copiloto", ajudando-me a esclarecer dúvidas sobre código, a encontrar soluções para erros (debugging) e a melhorar a redação dos textos deste relatório. Foi um recurso essencial para aumentar a minha produtividade e aprender novos conceitos mais rapidamente.
+[P356|Caption] [🖼️ IMAGE x1] 
+[P357|Caption] Figura 18 - Logótipo Google Gemini
+[P360|Heading 3] Vitest e React Testing Library
+[P361|Normal] Para garantir que a plataforma tem qualidade profissional e não quebra facilmente, adicionei ferramentas de testes automatizados (unitários) usando o Vitest e a React Testing Library. Isto permite testar automaticamente as funções vitais do site sempre que código novo é adicionado.
+[P362|Normal] [🖼️ IMAGE x1] 
+[P363|Caption] Figura 19 - Logótipos Vitest e React Testing Library
+[P364|Heading 1] Componente Prática e Desenvolvimento
+[P365|Normal] Este capítulo descreve em detalhe a implementação prática da Loja Online Kid to Kid Braga, apresentando a arquitetura do sistema, as funcionalidades desenvolvidas e as decisões técnicas tomadas durante o processo de desenvolvimento.
+[P366|Heading 2] Arquitetura do Sistema
+[P367|Normal] Frontend (A Interface do Utilizador):
+[P368|Normal] O projeto foi desenvolvido com a framework React em conjunto com TypeScript e Vite, o que permitiu criar uma SPA (Single Page Application) extremamente rápida. O design e o aspeto visual moderno, adaptado aos telemóveis (mobile-friendly), foram alcançados utilizando Tailwind CSS. A interface reflete um design simples, sem poluição visual (como excesso de ícones visuais desnecessários) para garantir o máximo foco do utilizador nos produtos. As compras, o carrinho e a pesquisa das categorias são as features de destaque e desenhados para ter zero tempos de espera de transição.
+[P370|Normal] Backend e Plataforma Serverless:
+[P371|Normal] Toda a arquitetura "por trás do pano" foi alimentada pelo ecosistema do Google Firebase. Em vez de ter um servidor complexo clássico, optei por uma infraestrutura limpa e segura (Serverless):
+[P373|List Paragraph] Firebase Authentication: Fica responsável por um registo e logins seguros sem termos base de dados extra de senhas vulneráveis.
+[P374|List Paragraph] Firebase Firestore: Base de Dados NoSQL rápida que aloja todo o catálogo (produtos, categorias, encomendas).
+[P375|List Paragraph] Firebase Storage: Gerência de ficheiros que guarda todas as imagens enviadas para a aplicação.
+[P378|List Paragraph] Camada de Apresentação (Frontend)
+[P379|Normal] A camada de apresentação é construída com React 18 e TypeScript, utilizando Vite como ferramenta de build. Esta camada é responsável por toda a interface do utilizador, incluindo:
+[P380|Normal] Renderização de componentes React
+[P381|Normal] Gestão de estado da aplicação
+[P382|Normal] Navegação entre páginas (React Router)
+[P383|Normal] Comunicação com o backend via APIs
+[P384|Normal] Validação de formulários no cliente
+[P385|List Paragraph] Camada de Lógica de Negócio
+[P386|Normal] A lógica de negócio é distribuída entre o frontend e os serviços Firebase. Inclui:
+[P387|Normal] Autenticação e autorização de utilizadores
+[P388|Normal] Processamento de encomendas
+[P389|Normal] Cálculo de preços e descontos
+[P390|Normal] Gestão de stock e favoritos
+[P391|List Paragraph] Camada de Dados (Backend)
+[P392|Normal] A camada de dados é implementada com Firebase, fornecendo:
+[P393|Normal] Firestore Database para persistência de dados
+[P394|Normal] Firebase Authentication para gestão de utilizadores
+[P395|Normal] Firebase Storage para armazenamento de imagens
+[P396|Normal] Firebase Security Rules para controlo de acesso
+[P397|Heading 3] Estrutura do Projeto
+[P398|Normal] O projeto está organizado seguindo as melhores práticas de desenvolvimento React. A estrutura de diretórios reflete a separação de responsabilidades da aplicação:
+[P399|Heading 4] Diretório src/
+[P400|Normal] O diretório src/ contém todo o código fonte da aplicação. É subdividido em vários subdiretórios com responsabilidades específicas.
+[P401|Heading 4] Diretório components/
+[P402|Normal] Contém todos os componentes React reutilizáveis da aplicação. Estão organizados por funcionalidade:
+[P403|Normal] ui/ - Componentes base de interface (Button, Input, Card, Modal)
+[P404|Normal] layout/ - Componentes de estrutura visual (Header, Footer, Sidebar)
+[P405|Normal] product/ - Componentes relacionados com a exibição de produtos
+[P406|Normal] cart/ - Componentes do carrinho de compras
+[P407|Normal] auth/ - Componentes de autenticação e proteção de rotas
+[P408|Normal] admin/ - Componentes exclusivos da área de gestão (Backoffice)
+[P410|Heading 4] Diretório pages/
+[P411|Normal] Contém os componentes de página da aplicação. Cada página representa uma rota diferente:
+[P412|List Paragraph] HomePage.tsx - Página inicial da loja
+[P413|Normal] CategoryPage.tsx - Listagem e filtragem de produtos por categoria
+[P414|Normal] ProductPage.tsx - Detalhe individual do produto
+[P415|Normal] SearchPage.tsx - Página de pesquisa de produtos
+[P416|Normal] CartPage.tsx - Carrinho de compras
+[P417|Normal] CheckoutPage.tsx - Processo de finalização de compra
+[P418|Normal] OrderSuccessPage.tsx - Página de confirmação após pagamento bem-sucedido
+[P419|Normal] FavoritesPage.tsx - Página da lista de produtos favoritos
+[P420|Normal] LoginPage.tsx / RegisterPage.tsx - Ecrãs de autenticação
+[P421|Normal] AccountPage.tsx - Perfil e histórico do utilizador
+[P422|Normal] admin/ - Diretório com as páginas administrativas (ex: AdminDashboardPage.tsx, AdminProductsPage.tsx, AdminOrdersPage.tsx, etc.)
+[P423|Heading 4] Diretório services/
+[P424|Normal] Contém os serviços que comunicam diretamente com o Firebase e gerem a lógica central:
+[P425|Normal] authService.ts - Serviço de autenticação
+[P426|Normal] productService.ts - Serviço de gestão de produtos
+[P427|Normal] orderService.ts - Serviço de processamento de encomendas
+[P428|Normal] paymentService.ts - Serviço de pagamentos (integração Stripe)
+[P429|Normal] storageService.ts - Serviço de armazenamento de imagens
+[P430|Normal] favoritesService.ts - Serviço de gestão de produtos favoritos
+[P431|Normal] couponService.ts - Serviço de validação de cupões de desconto
+[P432|Normal] reviewService.ts - Serviço de avaliações de produtos
+[P433|Normal] notificationService.ts e settingsService.ts - Serviços de apoio à gestão
+[P434|Heading 4] Diretório hooks/
+[P435|Normal] Contém custom hooks (ganchos personalizados) em React para encapsular lógica reutilizável em diferentes partes da aplicação:
+[P436|Normal] usePageTitle.ts - Hook responsável pela atualização e gestão dinâmica do título da página no separador do navegador, dependendo da rota em que o utilizador se encontra.
+[P437|Heading 4] Diretório contexts/
+[P438|Normal] Contém os contextos React para gestão de estado global:
+[P439|Normal] AuthContext.tsx - Contexto de autenticação
+[P440|Normal] CartContext.tsx - Contexto do carrinho de compras
+[P441|Normal] FavoritesContext.tsx - Contexto da lista de favoritos
+[P442|Normal] ThemeContext.tsx - Contexto para o tema da aplicação (Modo Claro/Escuro)
+[P443|Normal] AdminThemeContext.tsx - Contexto para o tema do painel administrativo
+[P444|Heading 4] Diretório types/
+[P445|Normal] Contém as definições de tipos TypeScript:
+[P446|Normal] index.ts - Ficheiro centralizado que contém todas as definições de tipos e interfaces utilizadas na aplicação (tipagens para produtos, utilizadores, encomendas, carrinho, etc.).
+[P447|Heading 4] Diretório lib/
+[P448|Normal] Contém os ficheiros de configuração base e funções utilitárias reutilizáveis:
+[P449|Normal] utils.ts - Funções utilitárias partilhadas pela aplicação (como a formatação condicional de classes CSS com o Tailwind).
+[P450|Normal] firebase.ts - Ficheiro de configuração central e inicialização dos serviços do Google Firebase
+[P451|Heading 3] Configuração do Projeto
+[P452|Normal] O projeto utiliza vários ficheiros de configuração para definir o comportamento das ferramentas utilizadas:
+[P453|Heading 4] vite.config.ts
+[P454|Normal] Configuração do Vite com plugins para React, mapeamento de caminhos (aliases de importação), e configurações de build otimizadas para produção.
+[P455|Normal] [🖼️ IMAGE x1] 
+[P456|Heading 4] tsconfig.json
+[P457|Normal] Configuração do TypeScript com opções estritas de tipo, caminhos para aliases, e configurações de compilação.
+[P458|Heading 4] tailwind.config.js
+[P459|Normal] Configuração do Tailwind CSS com tema customizado, cores da marca, e plugins adicionais.
+[P460|Heading 4] package.json
+[P461|Normal] Define todas as dependências do projeto, scripts de execução e de build, e configurações de metadados.
+[P462|Heading 4] components.json
+[P463|Normal] Ficheiro de configuração específico da biblioteca de interface shadcn/ui, responsável por gerir a instalação e a estrutura dos componentes visuais pré-construídos.
+[P464|Heading 4] firebase.json e .firebaserc
+[P465|Normal] Ficheiros de configuração da Firebase CLI, utilizados para definir as regras de hosting (alojamento) e associar o código local ao projeto correto na nuvem.
+[P466|Heading 4] firestore.rules e storage.rules
+[P467|Normal] Ficheiros que contêm as regras de segurança (Security Rules) da base de dados Firestore e do Storage, garantindo que apenas utilizadores autorizados podem ler ou modificar os dados e imagens da loja.
+[P468|Heading 2] Análise da Base de Dados
+[P469|Normal] Este capítulo apresenta uma análise detalhada da base de dados Firebase Firestore utilizada na Loja Online Kid to Kid Braga. Serão abordadas a estrutura das coleções, os tipos de dados, as relações entre documentos e as regras de segurança implementadas.
+[P470|Heading 3] Firestore Database
+[P471|Normal] O Cloud Firestore é a base de dados NoSQL document-oriented da Google, integrada na plataforma Firebase. Foi escolhida para este projeto devido às suas características de escalabilidade automática, sincronização em tempo real e modelo de preços baseado em utilização.
+[P472|Heading 3] Visão Geral das Coleções
+[P473|Normal] A base de dados Firestore foi desenhada de forma otimizada, dividindo a informação nas seguintes coleções principais:
+[P474|Normal] products: Guarda todos os dados dos artigos, como nome, preço, descrição, imagens, stock e categoria.
+[P475|Normal] users e addresses: A coleção users guarda o perfil do cliente (nome, email, avatar). Dentro de cada utilizador, existe uma sub-coleção addresses que permite ao cliente guardar múltiplas moradas de envio.
+[P476|Normal] orders: Regista todas as encomendas feitas, associando o cliente, os produtos comprados, o estado da entrega e o ID do pagamento do Stripe.
+[P477|Normal] categories: Estrutura que define as categorias da loja (ex: Menina, Menino, Calçado).
+[P478|Normal] reviews e reviewVotes: Coleções responsáveis pelo sistema de avaliações (1 a 5 estrelas) e pelos votos de utilidade dados por outros utilizadores.
+[P479|Normal] coupons: Guarda os códigos de desconto, com regras de segurança estritas, como valor mínimo da encomenda, limite de utilizações e datas de validade (validFrom e validUntil).
+[P480|Normal] promos_log: Registo histórico de todas as campanhas de newsletter enviadas aos clientes.
+[P481|Normal] reviewReports: Coleção para guardar as denúncias feitas pelos utilizadores a avaliações abusivas ou spam.
+[P482|Normal] audit_logs e analytics: Coleções isoladas e dedicadas a guardar estatísticas puras de vendas e registos de segurança, separadas do resto para manter a base de dados principal muito rápida.
+[P484|Heading 4] Características do Firestore
+[P485|Normal] O Firestore oferece várias características que o tornam ideal para aplicações web modernas:
+[P486|Normal] Modelo de dados flexível: Documentos JSON com suporte para tipos complexos e sub-coleções.
+[P487|Normal] Queries poderosas: Filtragem, ordenação e paginação nativas.
+[P488|Normal] Sincronização em tempo real: Atualizações instantâneas em todos os clientes.
+[P489|Normal] Offline persistence: Dados disponíveis mesmo sem conexão à internet.
+[P490|Normal] Segurança integrada: Firebase Security Rules rigorosas para controlo de acesso.
+[P491|Heading 4] Estrutura de Dados
+[P492|Normal] O Firestore organiza dados em coleções de documentos. Cada documento é um objeto JSON com campos e valores. A estrutura do projeto utiliza principalmente coleções planas, mas recorre a sub-coleções (como nas moradas dos utilizadores ou itens do carrinho) quando faz sentido isolar dados de forma hierárquica.
+[P495|Heading 3] Detalhe das Coleções
+[P496|Normal] A base de dados do projeto contém as seguintes coleções principais:
+[P501|Caption] Figura 20 - Firebase Console — Firestore com as coleções
+[P502|Heading 4] Coleção: products
+[P503|Normal] A coleção products armazena todos os produtos disponíveis na loja. Cada documento representa um produto único com os seguintes campos:
+[P506|Heading 4] Coleção: users e sub-coleção addresses
+[P507|Normal] A coleção users armazena informações sobre os utilizadores registados na plataforma:
+[P509|Normal] Para organizar melhor os dados, as moradas de envio não ficam diretamente no perfil, mas sim numa sub-coleção chamada addresses, permitindo que cada cliente tenha múltiplas moradas.
+[P510|Heading 4] Coleção: orders
+[P511|Normal] A coleção orders armazena as encomendas realizadas:
+[P513|Heading 4] Coleção: categories
+[P514|Normal] A coleção categories define rigidamente o catálogo de navegação:
+[P515|Normal] Estão limitadas a 7 categorias principais (validadas por regras de segurança): 'roupa', 'calcado', 'brinquedos', 'bebe', 'equipamento', 'maternidade', 'ocasioes'.
+[P516|Normal] Guardam campos como name, icon, color e image para a construção da interface gráfica.
+[P517|Heading 4] Coleção: reviews e reviewVotes
+[P518|Normal] A coleção reviews armazena as avaliações dos produtos (comentário, classificação 1 a 5 estrelas e identificação do utilizador). A coleção acessória reviewVotes permite que os clientes votem se uma avaliação foi útil ou não.
+[P519|Heading 4] Outras Coleções Importantes
+[P520|List Paragraph] carts: Coleção (e respetiva sub-coleção items) gerida pelo Firestore para guardar o estado do carrinho de compras de cada utilizador de forma segura.
+[P521|List Paragraph] favorites: Lista de desejos que mapeia um userId a um productId.
+[P522|List Paragraph] coupons: Códigos de desconto (lidos apenas pelos administradores para segurança).
+[P523|List Paragraph] contacts e newsletter: Formulários de contacto da loja e subscrições de emails.
+[P524|List Paragraph] settings: Configurações gerais da loja geriadas pelo painel administrativo.
+[P525|List Paragraph] reviewReports: Registo de denúncias feitas a avaliações de produtos.
+[P526|List Paragraph] audit_logs e analytics: Logs de segurança e estatísticas exclusivas para a equipa de staff.
+[P527|Heading 3] Relações entre Coleções
+[P528|Normal] O Firestore é uma base de dados NoSQL que não suporta joins nativos. Portanto, as relações são geridas através de:
+[P529|Normal] Referências por ID: A coleção orders contém um campo userId que referencia a coleção users.
+[P530|Normal] Desnormalização de Dados: Para otimizar a leitura, cada encomenda copia os dados do utilizador e da morada no momento exato da compra. Isto evita joins futuros e garante que a fatura não se altera mesmo que o cliente mude de morada anos depois.
+[P531|Heading 3] Firebase Security Rules
+[P532|Normal] As Regras de Segurança do Firebase avaliam quem pode ler ou escrever na base de dados, garantindo proteção a nível do servidor. No projeto, foram implementadas funções auxiliares (como isAuthenticated(), isOwner() e isStaff()) para tornar as regras impenetráveis.
+[P534|Heading 4] Regras de Administração e Staff
+[P535|Normal] Apenas utilizadores com papéis de admin ou staff (validado via "custom claims" ou e-mails específicos) podem criar, editar ou apagar Produtos, Categorias ou Configurações.
+[P536|Heading 4] Segurança do Perfil e Carrinho
+[P537|Normal] Para as coleções users, carts e favorites, os documentos só podem ser lidos ou alterados se o uid da sessão ativa for estritamente igual ao ID do dono (isOwner).
+[P538|Heading 4] Proteção do Processo de Encomenda (orders)
+[P539|Normal] Por motivos de segurança financeira e para evitar manipulação de preços pelo lado do cliente (Frontend), a criação de encomendas tem a regra de escrita bloqueada (allow create: if false;). As encomendas só são efetivadas internamente através do Backend (Cloud Functions) que tem privilégios de Administrador. Os clientes apenas podem atualizar uma encomenda para a cancelar caso esta ainda esteja como "pendente".
+[P540|Heading 3] Índices e Otimização
+[P541|Normal] Para permitir filtragens e ordenações rápidas no catálogo, foram configurados manualmente Índices Compostos no ficheiro firestore.indexes.json. Os principais incluem:
+[P542|Normal] products: Filtros combinados de category, gender, condition em relação ao price e data de criação (createdAt).
+[P543|Normal] products: Filtro de stock, marca e estado de reserva (isReserved).
+[P544|Normal] orders: Filtros de pesquisa por cliente (userId) em combinação com o estado da encomenda (status) ou data.
+[P545|Normal] reviews: Ordenação das avaliações pela utilidade (helpful) ou pontuação (rating).
+[P546|Heading 3] Backup e Recuperação
+[P547|Normal] Para garantir a integridade da loja, os dados são exportados periodicamente, mantendo o histórico de vendas, relatórios de anomalias na coleção reviewReports e um arquivo geral de transações de forma segura na Google Cloud.
+[P548|Heading 2] Análise do Código Fonte
+[P549|Normal] Este capítulo apresenta uma análise detalhada do código fonte do projeto, abordando os serviços implementados, os componentes React, os hooks personalizados e a organização geral do código.
+[P550|Heading 3] Serviços Implementados
+[P551|Normal] Os serviços (src/services/) são responsáveis pela comunicação com o Firebase e outras APIs externas. Cada serviço tem uma responsabilidade específica e encapsula a lógica de acesso a dados.
+[P552|Heading 4] authService.ts
+[P553|Normal] O authService gere toda a autenticação da aplicação. Utiliza o Firebase Authentication para registo, login, logout e gestão de utilizadores. Funcionalidades principais:
+[P554|Normal] Registo de novos utilizadores e autenticação de utilizadores existentes.
+[P555|Normal] Término de sessão (logout) e envio de e-mail de recuperação de password.
+[P556|Normal] Após o registo bem-sucedido, os dados adicionais do utilizador são guardados na coleção users do Firestore.
+[P557|Heading 4] productService.ts
+[P558|Normal] O productService gere todas as operações relacionadas com o catálogo de produtos no Firestore. Funcionalidades principais:
+[P559|Normal] Obtenção de produtos com filtros e pesquisa por texto.
+[P560|Normal] Operações de administração (Criar, Atualizar e Eliminar produtos).
+[P561|Normal] Atualização de stock e estado de reserva dos artigos.
+[P562|Heading 4] orderService.ts
+[P563|Normal] O orderService gere as encomendas da plataforma. Funcionalidades principais:
+[P564|Normal] Criação de novas encomendas e obtenção do histórico do utilizador.
+[P565|Normal] Atualização do estado da encomenda (pendente, enviada, entregue) e estado do pagamento.
+[P566|Normal] O serviço integra-se com a gestão de stock para garantir que os artigos não são vendidos em duplicado.
+[P567|Heading 4] paymentService.ts
+[P568|Normal] O paymentService gere os pagamentos através da integração segura com a API do Stripe. Funcionalidades principais:
+[P569|Normal] Criação de sessões de checkout seguras e verificação do estado do pagamento após a conclusão.
+[P570|Heading 4] storageService.ts
+[P571|Normal] O storageService gere o armazenamento de ficheiros estáticos no Firebase Storage. Funcionalidades principais:
+[P572|Normal] Upload de imagens para os produtos ou avatares dos utilizadores e eliminação de imagens antigas.
+[P573|Heading 4] Outros Serviços
+[P574|List Paragraph] reviewService.ts: Gere as avaliações de produtos submetidas pelos clientes.
+[P575|List Paragraph] couponService.ts: Valida códigos promocionais e calcula descontos aplicáveis.
+[P576|List Paragraph] favoritesService.ts: Permite adicionar e remover produtos da lista de desejos.
+[P577|List Paragraph] notificationService.ts: Processa envios de notificações do sistema.
+[P578|List Paragraph] settingsService.ts: Gere as definições globais da loja através do painel de administração.
+[P579|Heading 3] Componentes React
+[P580|Normal] A aplicação utiliza uma arquitetura de componentes modulares, combinando elementos personalizados com componentes pré-construídos da biblioteca shadcn/ui.
+[P581|Heading 4] Componentes de UI Base (src/components/ui/)
+[P582|Normal] Componentes de interface reaproveitáveis, estilizados com Tailwind CSS:
+[P583|Normal] button.tsx, input.tsx, checkbox.tsx, label.tsx, select.tsx, slider.tsx: Elementos de formulário.
+[P584|Normal] card.tsx: Estrutura visual em formato de cartão.
+[P585|Normal] sonner.tsx: Componente para exibição de notificações (toasts) temporárias.
+[P586|Normal] confirm-dialog.tsx: Janelas de confirmação (modals).
+[P587|Heading 4] Componentes de Layout e Estrutura (src/components/layout/ e src/components/)
+[P588|List Paragraph] Header.tsx e Footer.tsx: Cabeçalho (com navegação) e Rodapé da loja.
+[P589|List Paragraph] HeroSlider.tsx: Carrossel de imagens dinâmico para a página inicial.
+[P590|List Paragraph] CategoryGrid.tsx e CategoryCard.tsx: Grelhas de navegação visual por categorias.
+[P591|List Paragraph] UserAvatar.tsx e NotificationBell.tsx: Componentes de interação do utilizador autenticado.
+[P592|Heading 4] Componentes de Produto e Interação (src/components/product/)
+[P593|List Paragraph] ProductCard.tsx: Cartão de exibição resumida de um produto nas listagens.
+[P594|List Paragraph] ProductReviews.tsx: Secção de comentários e sistema de classificação por estrelas.
+[P595|Heading 4] Componentes de Autenticação e Proteção (src/components/auth/)
+[P596|List Paragraph] ProtectedRoute.tsx: Impede o acesso de utilizadores não registados a áreas privadas.
+[P597|List Paragraph] AdminRoute.tsx: Bloqueia o acesso ao Backoffice, garantindo que apenas o staff autorizado pode entrar.
+[P598|Heading 4] Componentes Administrativos (src/components/admin/)
+[P599|Normal] AdminLayout.tsx: Estrutura base com barra lateral (sidebar) de navegação exclusiva para o painel de administração.
+[P600|Heading 3] Hooks Personalizados
+[P601|Normal] Os hooks encapsulam a lógica do React. No projeto, a maioria da lógica global está nos contextos, sendo exportada na forma de hooks (ex: useAuth e useCart).
+[P602|Heading 4] usePageTitle.ts
+[P603|Normal] Hook personalizado localizado na pasta src/hooks/ responsável por atualizar dinamicamente o título do separador do navegador, dependendo da rota atual onde o utilizador se encontra.
+[P604|Heading 3] Contextos React
+[P605|Normal] Os contextos (src/contexts/) gerem o estado global da aplicação, evitando a passagem excessiva de propriedades entre componentes (prop drilling).
+[P606|Heading 4] AuthContext.tsx
+[P607|Normal] Fornece o estado de autenticação a todos os componentes. Inclui os dados do utilizador atual (exportado através do hook auxiliar useAuth).
+[P608|Heading 4] CartContext.tsx
+[P609|Normal] Gere toda a lógica do carrinho de compras. Mantém o controlo dos itens adicionados, calcula os subtotais e as quantidades, guardando o estado no localStorage para não se perder caso a página seja recarregada (exportado através do hook useCart).
+[P610|Normal] [🖼️ IMAGE x1] 
+[P611|Heading 4] FavoritesContext.tsx
+[P612|Normal] Fornece o estado da lista de desejos (favoritos) do utilizador, permitindo a sincronização rápida com a base de dados.
+[P613|Heading 4] ThemeContext.tsx e AdminThemeContext.tsx
+[P614|Normal] Gerem a aparência da aplicação, permitindo alternar fluidamente entre o Modo Claro (Light Mode) e o Modo Escuro (Dark Mode) quer na loja pública, quer no painel administrativo.
+[P615|Heading 3] Configuração de Rotas
+[P616|Normal] O roteamento é centralizado utilizando o React Router, interligando os componentes da pasta src/pages/.
+[P617|Normal] Rotas Públicas: / (Página Inicial), /category/:slug (Categorias), /product/:id (Produto), /search (Pesquisa), rotas de autenticação (/login, /register, /forgot-password) e páginas institucionais (/about, /contact, /terms, /privacy, /help).
+[P618|Normal] Rotas Protegidas (Clientes): /cart (Carrinho), /checkout (Pagamento), /order-success (Confirmação de encomenda), /account (Perfil) e /favorites.
+[P619|Normal] Rotas Administrativas (Backoffice): Protegidas na diretoria /admin, dão acesso a painéis como /admin (Dashboard), /admin/products (Produtos), /admin/orders (Encomendas), /admin/clients (Clientes), /admin/coupons (Cupões), /admin/reviews (Avaliações) e /admin/settings (Configurações).
+[P620|Heading 3] Cloud Functions (Backend)
+[P621|Normal] Para garantir a segurança total do sistema e automatizar tarefas, desenvolvi Cloud Functions (Node.js) que correm no servidor da Google. Sendo código Server-Side, não pode ser manipulado pelos clientes:
+[P622|Normal] Gestão de Utilizadores: A função onUserCreated envia o email de boas-vindas automático. A função setAdminClaims atribui os privilégios de gestor de forma segura, e a customPasswordReset trata da recuperação de contas utilizando um serviço de SMTP próprio.
+[P623|Normal] Encomendas e Validações (Stripe): A função createSecureOrder e a validateCouponCode validam os preços e os descontos obrigatoriamente no servidor, impedindo que um cliente altere o preço no navegador. A createStripeCheckoutSession cria a zona de pagamento, a stripeWebhook escuta o banco para confirmar se o pagamento foi autorizado, e a refundOrder permite emitir reembolsos automáticos via Stripe.
+[P624|Normal] Notificações em Tempo Real: As funções onNewOrder, onOrderUpdate, onNewReview e onNewContact são ativadas por eventos da loja e disparam alertas imediatos para o gestor e emails de atualização de estado para os clientes.
+[P625|Normal] [🖼️ IMAGE x1] 
+[P626|Caption] Figura 21 - Firebase Functions — lista das Cloud Functions deployed
+[P627|Heading 2] Funcionalidades da Plataforma
+[P628|Normal (Web)] Este capítulo descreve as principais funcionalidades implementadas na plataforma "Kid to Kid Braga", focando-se na experiência visual do utilizador (UI/UX) e na lógica que suporta cada operação.
+[P629|Heading 3] Sistema de Autenticação
+[P630|Normal] O sistema de autenticação é a porta de entrada para funcionalidades exclusivas, com formulários limpos e validação de campos em tempo real. Para além do registo tradicional por email e password, implementei a funcionalidade de Login seguro com o Google (OAuth), oferecendo uma entrada mais rápida. Na sua área de perfil, o utilizador pode gerir as suas múltiplas moradas de envio e atualizar a sua foto de perfil (Avatar), que é guardada em segurança no Firebase Storage.
+[P631|Normal] [🖼️ IMAGE x1] 
+[P634|Heading 4] Registo de Utilizadores
+[P635|Normal (Web)] Formulário que permite a novos clientes criarem uma conta fornecendo o email e uma palavra-passe segura.
+[P636|Normal (Web)] [🖼️ IMAGE x1] 
+[P637|Heading 4] Login
+[P638|Normal (Web)] Área de autenticação onde os utilizadores registados podem aceder à sua conta. Em caso de erro, são apresentadas notificações visuais vermelhas (toasts) no canto do ecrã.
+[P639|Normal (Web)] [🖼️ IMAGE x1] 
+[P640|Heading 4] Recuperação de Password
+[P641|Normal (Web)] Funcionalidade que envia um link de redefinição para o email do utilizador caso este se esqueça da palavra-passe.
+[P642|Normal (Web)] [🖼️ IMAGE x1] 
+[P643|Normal (Web)] [🖼️ IMAGE x1] 
+[P644|Heading 4] Perfil do Utilizador
+[P645|Normal (Web)] Área reservada (Página de Conta) onde o cliente pode visualizar o seu histórico de encomendas, gerir as moradas de envio e atualizar os seus dados pessoais e fotografia de perfil.
+[P646|Normal (Web)] [🖼️ IMAGE x1] 
+[P647|Heading 3] Catálogo de Produtos
+[P648|Normal (Web)] O catálogo é o núcleo visual da loja, desenhado num formato de grelha (Grid) responsiva.
+[P649|Normal (Web)] A plataforma inclui também um sistema de Avaliações e Favoritos. Os clientes podem avaliar a roupa de 1 a 5 estrelas e adicionar prós e contras. Se o sistema detetar que o cliente comprou mesmo aquele artigo, adiciona automaticamente um selo de "Compra Confirmada". Além disso, os clientes podem adicionar peças que gostem a uma página de Favoritos (Wishlist). Foram ainda desenvolvidas Páginas Institucionais essenciais: AboutPage (sobre o projeto sustentável), HelpPage (FAQ), PrivacyPolicyPage (políticas RGPD) e TermsPage (Termos e Condições).
+[P650|Normal (Web)] [🖼️ IMAGE x1] 
+[P651|Caption] Figura 22 - Página Inicial (Homepage) — hero slider + categorias
+[P652|Heading 4] Listagem de Produtos
+[P653|Normal (Web)] Os produtos são apresentados em cartões (ProductCard) que mostram a imagem de destaque, marca, preço e estado do artigo, adaptando-se ao tamanho do ecrã (desde 1 coluna no telemóvel até 4 colunas no computador).
+[P654|Heading 4] Filtros de Produtos
+[P655|Normal (Web)] Na lateral esquerda, o utilizador pode filtrar os produtos por Categoria, Género, Preço e Estado da roupa para encontrar exatamente o que procura.
+[P656|Normal (Web)] [🖼️ IMAGE x1] 
+[P657|Heading 4] Ordenação
+[P658|Normal (Web)] Permite organizar a vista dos produtos por relevância, preço mais baixo/alto ou pelos artigos adicionados mais recentemente.
+[P659|Heading 4] Paginação
+[P660|Normal (Web)] Divide a lista de produtos em várias páginas para não sobrecarregar o ecrã e garantir um carregamento rápido do site.
+[P661|Heading 4] Página de Detalhe do Produto
+[P662|Normal (Web)] Ao clicar num artigo, abre-se uma página com uma galeria de imagens otimizada, descrição completa, indicador de stock atual e botões de ação ("Adicionar ao Carrinho").
+[P663|Heading 4] Pesquisa
+[P664|Normal (Web)] Barra de pesquisa global localizada no cabeçalho (Header) que permite encontrar produtos rapidamente através de texto.
+[P665|Heading 3] Carrinho de Compras
+[P666|Normal (Web)] Visualmente, o carrinho funciona como uma gaveta lateral (Drawer) que desliza suavemente da direita do ecrã.
+[P667|Heading 4] Adicionar ao Carrinho
+[P668|Normal (Web)] Botões presentes nas listagens que inserem o produto diretamente na lista de compras do utilizador.
+[P669|Heading 4] Visualizar Carrinho
+[P670|Normal (Web)] O cliente pode ver a qualquer momento o subtotal e os itens selecionados sem ser obrigado a sair da página onde está a navegar.
+[P671|Heading 4] Gerir Itens do Carrinho
+[P672|Normal (Web)] Interface que permite alterar as quantidades pretendidas de cada produto ou removê-los completamente da lista.
+[P673|Heading 4] Persistência do Carrinho
+[P674|Normal (Web)] Utiliza a memória local do navegador (localStorage) para garantir que o cliente não perde os produtos selecionados caso feche a aba acidentalmente.
+[P675|Heading 4] Validação de Stock
+[P676|Normal (Web)] Sempre que o utilizador tenta adicionar uma quantidade superior à existente no Firestore, o botão é desativado e surge um aviso de "Stock Insuficiente".
+[P677|Heading 3] Processo de Checkout
+[P678|Normal (Web)] O processo de finalização de compra foi desenhado para ser rápido e seguro, dividido em etapas claras.
+[P679|Heading 4] Resumo do Carrinho
+[P680|Normal (Web)] Primeira etapa onde os itens e os valores finais da compra são revistos e confirmados pelo cliente.
+[P681|Heading 4] Informações de Envio
+[P682|Normal (Web)] Formulário dinâmico onde o cliente preenche a sua nova morada de entrega ou seleciona uma morada guardada anteriormente.
+[P683|Heading 4] Método de Envio
+[P684|Normal (Web)] Seleção das opções de entrega, com o sistema a calcular automaticamente os respetivos portes de envio no subtotal.
+[P685|Heading 4] Cupões de Desconto
+[P686|Normal (Web)] Campo dedicado à inserção de códigos promocionais que validam e abatem o desconto no valor total da encomenda em tempo real.
+[P687|Heading 4] Pagamento com Stripe
+[P688|Normal (Web)] Para máxima segurança bancária, o utilizador é redirecionado para a plataforma Stripe, onde os dados do cartão de crédito são processados e protegidos.
+[P689|Heading 4] Confirmação de Encomenda
+[P690|Normal (Web)] Página final de sucesso que confirma que o pagamento foi recebido e gera um número único de acompanhamento da encomenda.
+[P691|Heading 3] Painel Administrativo
+[P692|Normal (Web)] Área restrita de Backoffice exclusiva para a equipa de administração e staff, com um tema escuro distinto para ser facilmente identificada e não confundir com a loja pública. O painel é o centro de controlo de todo o negócio e inclui as seguintes ferramentas:
+[P693|Normal (Web)] Painel Integrado de Backoffice:
+[P694|Normal (Web)] Além da visão do cliente, a aplicação contém um dashboard de controlo escondido do público. A administração consegue criar os seus novos artigos, gerir e verificar os totais das encomendas recebidas, gerar e desativar cupões de desconto e até mesmo gerir uma newsletter automatizada que dispara notificações.
+[P695|Heading 4] Dashboard e Analytics
+[P696|Normal (Web)] Ecrã inicial que apresenta estatísticas gerais e um painel dedicado de Analytics. Através da biblioteca Recharts, gera gráficos visuais e reais das receitas, lucros, novas vendas e tendências de crescimento da loja.
+[P697|Normal (Web)] [🖼️ IMAGE x1] 
+[P698|Heading 4] Gestão de Produtos e Página Seed
+[P699|Normal (Web)] Interface que permite ao staff adicionar novos artigos em segunda mão, alterar preços, fotos, e atualizar o stock. Inclui também a página oculta "Admin Seed", que é uma ferramenta avançada para importar dezenas de produtos de teste automaticamente para a base de dados num só clique.
+[P700|Normal (Web)] [🖼️ IMAGE x1] 
+[P701|Heading 4] Gestão de Encomendas
+[P702|Normal (Web)] Tabela de controlo onde os administradores visualizam todas as compras feitas, verificam se o pagamento foi aprovado pelo Stripe e atualizam os estados logísticos das encomendas (ex: "Em Processamento", "Enviado", "Entregue" ou "Reembolsado").
+[P704|Heading 4] Gestão de Utilizadores e Clientes
+[P705|Normal (Web)] Área dedicada a consultar a lista completa de clientes registados na plataforma, analisar o histórico de cada um e gerir permissões de acesso (promover utilizadores a staff).
+[P706|Heading 4] Gestão de Categorias e Cupões
+[P707|Normal (Web)] Ferramentas de gestão para criar, editar ou remover as categorias principais do catálogo, e um gerador de campanhas de desconto (cupões) onde o administrador define regras estritas de utilização (ex: desconto em percentagem, valor mínimo de compra e datas de validade).
+[P708|Heading 4] Moderação de Avaliações e Contactos
+[P709|Normal (Web)] Área de moderação onde a equipa pode analisar as avaliações (1 a 5 estrelas) deixadas nos produtos, permitindo ocultar comentários falsos ou denúncias de spam. Inclui também um painel para ler as mensagens enviadas pelos clientes através da página de Contacto.
+[P710|Heading 4] Newsletter e Notificações em Tempo Real
+[P711|Normal] Interface para gestão da lista de clientes subscritores e envio de campanhas de marketing por email em massa. O painel conta ainda com um sistema de Notificações em Tempo Real integrado no cabeçalho (ícone de "sino"), que alerta o administrador instantaneamente sempre que há uma nova venda, um novo contacto ou um produto a ficar sem stock.
+[P712|Heading 2] Implementação Técnica Detalhada
+[P713|Normal (Web)] Este capítulo aprofunda as soluções arquitetónicas e o código utilizado para concretizar as funcionalidades descritas.
+[P714|Heading 3] Configuração do Firebase
+[P715|Normal (Web)] O Firebase atua como Backend-as-a-Service (BaaS).
+[P716|Heading 4] Criação do Projeto Firebase
+[P717|Normal (Web)] O projeto foi criado na consola da Google para gerir a base de dados e a autenticação de forma centralizada.
+[P718|Normal (Web)] [🖼️ IMAGE x1] 
+[P719|Caption] Figura 23 - Firebase Authentication — lista de utilizadores registados
+[P720|Heading 4] Configuração da Aplicação Web
+[P721|Normal (Web)] A ligação entre o código React e os servidores da Google é feita inicializando os módulos no ficheiro src/lib/firebase.ts.
+[P722|Heading 4] Variáveis de Ambiente
+[P723|Normal (Web)] Para garantir a segurança do repositório, as chaves de acesso não estão expostas diretamente no código, sendo carregadas através de ficheiros de ambiente (.env.local):
+[P724|Normal (Web)] [🖼️ IMAGE x1] 
+[P725|Heading 3] Integração com Stripe
+[P726|Normal (Web)] A integração de pagamentos exigiu uma abordagem de dupla camada (Frontend e Backend).
+[P727|Heading 4] Configuração da Conta Stripe
+[P728|Normal (Web)] Foi criada uma conta de desenvolvedor no Stripe para gerar as chaves de API públicas e secretas.
+[P729|Heading 4] Fluxo de Pagamento
+[P730|Normal (Web)] No Frontend, usamos a biblioteca @stripe/stripe-js para iniciar a sessão e transferir o cliente de forma segura para o checkout.
+[P731|Heading 4] Webhooks Stripe
+[P732|Normal (Web)] No Backend (Cloud Functions), criámos endpoints que recebem a confirmação do banco de forma assíncrona. Quando o Stripe avisa que o pagamento foi bem-sucedido, o servidor atualiza o estado da encomenda no Firestore para "pago".
+[P733|Heading 3] Otimizações de Performance
+[P734|Normal (Web)] A plataforma foi desenvolvida como uma PWA (Progressive Web App). Através da configuração de um Service Worker (sw.js) e de um ficheiro Manifest, o site da Kid to Kid pode ser instalado num telemóvel ou computador como se fosse uma aplicação nativa. Para garantir um carregamento inicial extremamente rápido, utilizei também a técnica de Lazy Loading (através do React.lazy e Suspense), fazendo com que o navegador apenas carregue o código da página que o utilizador está a visitar no momento.
+[P735|Heading 4] Lazy Loading
+[P736|Normal (Web)] Carregamento de componentes pesados apenas quando são estritamente necessários, reduzindo o tempo inicial de abertura do site.
+[P737|Heading 4] Code Splitting
+[P738|Normal (Web)] Divisão do código JavaScript compilado em pedaços menores (chunks) geridos pelo Vite.
+[P739|Heading 4] Otimização de Imagens
+[P740|Normal (Web)] Utilização do componente OptimizedImage.tsx para garantir que as imagens da roupa carregam apenas quando aparecem no ecrã e utilizam formatos otimizados.
+[P741|Heading 4] Caching
+[P742|Normal (Web)] Utilização de localStorage para manter dados temporários ativos sem sobrecarregar a base de dados com pedidos repetitivos.
+[P743|Heading 4] Paginação
+[P744|Normal (Web)] No código, o catálogo utiliza cursores do Firestore para pedir apenas um bloco limitado de produtos de cada vez, fazendo novos pedidos apenas quando se avança de página.
+[P745|Heading 3] Segurança
+[P746|Normal (Web)] A segurança foi uma prioridade máxima neste projeto. Para além das regras normais de leitura/escrita, implementei Rate Limiting nas Cloud Functions (por exemplo, um máximo de 5 encomendas por hora por utilizador) para impedir ataques informáticos e criação de spam. Todos os preços são validados no servidor (server-side), implementei a verificação do tipo de ficheiro (MIME type check) sempre que uma imagem é carregada para bloquear ficheiros maliciosos, e ativei a proteção CSRF/HMAC que verifica a assinatura digital do Stripe antes de aprovar e libertar qualquer encomenda.
+[P747|Heading 4] Autenticação Segura
+[P748|Normal (Web)] As palavras-passe são encriptadas de forma unidirecional pelos servidores do Firebase, não sendo visíveis nem para os próprios administradores.
+[P749|Heading 4] Regras de Segurança Firestore
+[P750|Normal (Web)] As regras foram escritas no ficheiro firestore.rules para bloquear acessos indevidos no servidor:
+[P751|Normal (Web)] [🖼️ IMAGE x1] 
+[P752|Heading 4] Proteção XSS
+[P753|Normal (Web)] O uso nativo do React protege o site contra injeções de código malicioso (Cross-Site Scripting) ao higienizar todas as variáveis inseridas pelos utilizadores antes da sua renderização.
+[P754|Heading 4] HTTPS
+[P755|Normal (Web)] O projeto foi configurado e publicado para forçar o uso de ligações seguras e encriptadas via HTTPS.
+[P756|Heading 3] Acessibilidade
+[P757|Normal (Web)] A biblioteca shadcn/ui garante que a loja pode ser navegada através de leitores de ecrã e atalhos de teclado. Os botões e formulários possuem etiquetas invisíveis (aria-labels) para ajudar utilizadores com limitações motoras ou de visão.
+[P758|Heading 3] Responsividade
+[P759|Normal (Web)] A interface foi programada com uma estratégia Mobile-First através do Tailwind CSS. Componentes grandes transformam-se em elementos ocultáveis para ecrãs de telemóvel (ex: classes md:hidden), garantindo que o design não se desconfigura em nenhum ecrã.
+[P760|Heading 2] Testes e Validação
+[P761|Normal] Este subcapítulo descreve os testes realizados para garantir a qualidade e fiabilidade da aplicação "Loja Online Kid to Kid Braga" antes do seu lançamento oficial.
+[P762|Heading 3] Tipos de Testes
+[P763|Normal] Diferentes tipos de testes foram realizados durante o desenvolvimento:
+[P764|Normal] Testes Manuais: Realizados continuamente enquanto escrevia o código para verificar o funcionamento de cada funcionalidade.
+[P765|Normal] Testes de Usabilidade: Utilizadores reais testaram a aplicação e deram feedback sobre a facilidade de uso.
+[P766|Normal] Testes de Responsividade: A aplicação foi testada em vários telemóveis e ecrãs para garantir uma adaptação perfeita com o Tailwind CSS.
+[P767|Normal] Testes de Performance: Feitos para garantir que o site abria rápido e não encravava.
+[P768|Heading 3] Cenários de Teste
+[P769|Normal] Os seguintes cenários foram testados ao detalhe:
+[P770|Normal] Autenticação: Registo com dados inválidos, password fraca, login correto/incorreto e bloqueio de páginas a utilizadores sem conta.
+[P771|Normal] Catálogo e Produtos: Teste aos filtros de pesquisa, ordenação, paginação e comportamento do botão de compra quando um produto está esgotado.
+[P772|Normal] Carrinho: Tentar adicionar mais quantidade do que a que existe no stock do Firestore, remover itens e ver se o carrinho não desaparecia ao fechar a página.
+[P773|Normal] Checkout e Painel de Administração: Simulação de pagamentos com cartões de teste no Stripe, validação de cupões e bloqueio do painel de staff a clientes normais.
+[P774|Heading 3] Resultados dos Testes e Resolução de Problemas
+[P775|Normal] Os testes revelaram alguns problemas que foram imediatamente corrigidos:
+[P776|Normal] Problema: O carrinho desaparecia quando se atualizava a página. Solução: Guardar os dados no localStorage do navegador.
+[P777|Normal] Problema: Pesquisas com muitos filtros ao mesmo tempo davam erro. Solução: Criação de índices manuais no Firestore da Google.
+[P778|Normal] Problema: Imagens muito pesadas deixavam o site lento. Solução: Compressão das imagens e carregamento diferido (lazy loading).
+[P779|Heading 3] Checklist de Lançamento
+[P780|Normal] Antes de concluir o projeto, confirmei os seguintes pontos:
+[P781|Normal] Todas as funcionalidades principais a funcionar sem erros.
+[P782|Normal] O site está responsivo em telemóveis (iOS e Android).
+[P783|Normal] Variáveis de ambiente (.env.local) configuradas e escondidas de forma segura.
+[P784|Normal] Regras de segurança do Firestore ativadas para proteger os dados.
+[P785|Normal] Pagamentos do Stripe configurados em modo de teste.
+[P786|Heading 2] Análise e Resultados
+[P787|Normal] Este ponto apresenta uma análise crítica do projeto, avaliando se os objetivos foram cumpridos e as dificuldades que tive de ultrapassar.
+[P788|Heading 3] Cumprimento dos Objetivos
+[P789|Normal] Todos os objetivos definidos no início foram alcançados com sucesso. Consegui criar um site responsivo e moderno (com React e Tailwind CSS), que incentiva a economia circular. O sistema tem autenticação segura, um catálogo fácil de filtrar, carrinho de compras funcional, pagamentos integrados e um painel para a loja gerir o stock. Tudo isto foi feito cumprindo os prazos do cronograma.
+[P790|Heading 3] Dificuldades Encontradas
+[P791|Normal] Durante o desenvolvimento, apanhei várias dores de cabeça que me obrigaram a pesquisar bastante:
+[P792|Normal] Estrutura da Base de Dados: Como o Firestore é uma base de dados NoSQL, tive de pensar de forma diferente do habitual. Tive de fazer vários testes para perceber como organizar as coleções de produtos e utilizadores sem que o site ficasse lento.
+[P793|Normal] Gestão do Estado do Carrinho: Garantir que o carrinho estava sempre atualizado em todas as páginas foi um desafio. Resolvi isto usando a Context API do React ligada ao armazenamento local do navegador.
+[P794|Normal] Integração com o Stripe: Configurar os pagamentos foi muito complexo, especialmente a parte de pôr o servidor a "escutar" os webhooks do Stripe para confirmar se o cliente já tinha pago. Tive de ler muita documentação para conseguir fazer isto de forma segura.
+[P795|Normal] O Apoio da Inteligência Artificial (IA): Para ser totalmente transparente, e refletindo a realidade do mercado de trabalho atual, utilizei Inteligência Artificial (Google Gemini) como ferramenta de apoio ao longo do projeto. Por exemplo, a lógica complexa do carrinho de compras e algumas dúvidas de estruturação do código foram resolvidas com a ajuda da IA. Funcionei com a IA como se fosse um "professor particular" ou "copiloto": sempre que bloqueava num erro do React ou do Firebase, pedia ajuda para entender o problema e gerar a lógica correta. Esta abordagem não fez o trabalho por mim, mas ajudou-me imenso a acelerar a aprendizagem, a entender código avançado e a construir o projeto sozinho sem estagnar nas dificuldades.
+[P796|Heading 3] Resultados Alcançados e Aprendizagens
+[P797|Normal] Apesar das dificuldades, os resultados superaram as expectativas. A plataforma é rápida, o código está limpo, bem organizado e seguro. Aprendi imenso sobre desenvolvimento Full-Stack (juntar a parte visual com as bases de dados e servidores), e ganhei muita autonomia a resolver problemas técnicos difíceis sozinho.
+[P798|Heading 3] Otimização Semântica, SEO e Acessibilidade (Uso do HeadingsMap)
+[P799|Normal] O desenvolvimento do frontend da Kid to Kid Braga, foquei-me na criação de um código HTML estritamente semântico, utilizando a ferramenta HeadingsMap para auditar a estrutura do site.
+[P800|Normal] Esta abordagem trouxe três benefícios principais:
+[P801|Normal] SEO Otimizado: Garanti uma hierarquia correta de títulos (H1 a H3), facilitando a indexação do Google para termos como "Produtos" e "Categorias".
+[P802|Normal] Acessibilidade (A11y): Assegurei uma navegação lógica para leitores de ecrã, eliminando saltos na hierarquia de títulos e tornando a loja mais inclusiva.
+[P803|Normal] Soluções Inteligentes: Através da auditoria, detetei a falta de um H1 na Homepage. Resolvi-o injetando um título com a classe sr-only (Tailwind CSS), o que manteve o design visual intacto, mas garantiu uma pontuação perfeita em termos de semântica e SEO.
+[P804|Normal] [🖼️ IMAGE x1] 
+[P805|Caption] Figura  - Auditoria da estrutura semântica da Homepage através da extensão HeadingsMap, evidenciando a hierarquia de títulos (H1-H4).
+[P807|Heading 2] Código
+[P808|Normal] O código está formatado no seguinte esquema:
+[P809|Normal (Web)] [🖼️ IMAGE x2] 
+[P812|Heading 1] Conclusão
+[P813|Normal] Chegar ao fim deste projeto e ver a "Loja Online Kid to Kid Braga" a funcionar a 100% é, sem dúvida, a melhor forma de fechar estes três anos na Escola Profissional de Braga. Fazer este site do zero foi um desafio gigante. Como usei ferramentas muito recentes e puxadas (React, TypeScript, Tailwind CSS e Firebase) que não demos nas aulas, tive de me desenrascar sozinho, pesquisar muito e arriscar aprender coisas novas. Olhar para o resultado final dá-me um orgulho enorme, porque consegui fazer exatamente aquilo que queria.
+[P814|Normal] Para ser sincero, o caminho não foi nada fácil. Tive momentos em que me apeteceu desistir e apanhei grandes dores de cabeça, especialmente a montar a base de dados no Firestore e a garantir que os logins e o carrinho de compras não davam erro. Mas, com muita pesquisa e teimosia, consegui dar a volta por cima. Hoje percebo que foram exatamente essas horas "às cabeçadas" com o código que me fizeram evoluir a sério como programador.
+[P815|Normal] Quando penso no porquê de ter vindo para a EPB, lembro-me que queria um ensino mais prático, que me preparasse logo para o mercado de trabalho. Como cheguei a Portugal para construir um futuro novo, a escola ajudou-me imenso a integrar-me. As aulas deram-me as bases, mas foram os professores que fizeram toda a diferença. Quero agradecer-lhes do fundo do coração pela paciência e por estarem sempre lá para mim — não só para tirar dúvidas da escola, mas também para me ajudarem a adaptar a uma nova cultura. Um grande obrigado à EPB por me ter recebido de braços abertos e me fazer sentir em casa desde o primeiro dia.
+[P816|Normal] Além da escola, cresci imenso no meu estágio na empresa Rodel - Iluminação Técnica, S.A. (Bragalux). Foi a minha primeira experiência a sério no mercado de trabalho em Portugal e foi incrível. Com a super ajuda do meu tutor, o Ricardo Pereira, adaptei-me rápido à equipa e percebi como é o ritmo de uma empresa. Fiz um bocado de tudo: desde dar apoio informático aos colegas (Helpdesk) até arranjar redes e equipamentos. O estágio foi o complemento perfeito para este projeto, porque aprendi a ter responsabilidade, a trabalhar em equipa e a comunicar num ambiente de trabalho real.
+[P817|Normal] Olhando agora para trás com calma, sou o primeiro a admitir que, se pudesse voltar no tempo, mudava algumas coisas. Teria estudado mais e levado as aulas mais a sério no primeiro e segundo ano, para ter melhores notas. Sei que isso teria subido a minha média e ajudado a não passar por tantas dificuldades técnicas ao longo do curso. Mas não vejo isso como um fracasso. Foi um "abre-olhos" que me fez crescer e perceber que, sem esforço e dedicação, não se vai a lado nenhum.
+[P818|Normal] Para terminar, saio da escola com a certeza de que estou preparado para o que aí vem. Este site não é só um trabalho para ter nota; é a prova daquilo que sou capaz de fazer e o meu primeiro grande projeto como programador Full-Stack. Quanto ao futuro, a minha ideia é continuar a estudar já para o ano num CTeSP, numa área como Cibersegurança, Gestão de Dados ou Inteligência Artificial e Automação. Quero aproveitar esse tempo para melhorar naquilo em que ainda tenho mais dificuldade e ficar mais forte tecnicamente. Só depois disso é que quero dar o salto definitivo para o mercado de trabalho, já com toda a confiança. Saio daqui muito mais maduro, focado e super grato por tudo.
+[P821|Heading 1] Bibliografia
+[P822|Normal (Web)] React Documentation. (2026). React – A JavaScript library for building user interfaces. Disponível em: https://react.dev
+[P823|Normal (Web)] Vite. (2026). Next Generation Frontend Tooling. Disponível em: https://vitejs.dev
+[P824|Normal (Web)] Google Firebase. (2026). Firebase Documentation. Disponível em: https://firebase.google.com/docs
+[P825|Normal (Web)] Tailwind CSS. (2026). Rapidly build modern websites without ever leaving your HTML. Disponível em: https://tailwindcss.com
+[P826|Normal (Web)] Stripe. (2026). Stripe API Reference. Disponível em: https://stripe.com/docs/api
+[P830|Heading 1] Anexos
+[P831|Normal] Anexo 1 – Curriculum Vitae
+[P832|Normal] [🖼️ IMAGE x1] 
+[P833|Normal] [🖼️ IMAGE x1] 
+
+
+=== TABLES ===
+
+--- Table 1 ---
+  Row 0:  || CURSO PROFISSIONAL DE GESTÃO E PROGRAMAÇÃO DE SISTEMAS INFORMÁTICOS |  | Trabalho realizado sob a orientação de: | Prof. Manuel Ferreira | Prof. Ana Marta Vilaverde |  | Escola Profissional de Braga | Braga, 11 de maio de 2026
+
+--- Table 2 ---
+  Row 0: Cronograma || Cronograma || Cronograma
+  Row 1: Fase || Calendarização || Elenco de atividades nas diversas fases
+  Row 2: Conceção || Setembro de 2025 || Conhecimento do Regulamento
+  Row 3: Conceção || Setembro de 2025 || Definição dos critérios
+  Row 4: Conceção || Setembro de 2025 || Período de Negociação / Reflexão / Decisão sobre os temas / Problemas a explorar
+  Row 5: Conceção || Outubro de 2025 || Normas para a elaboração do trabalho escrito (Relatório)
+  Row 6: Conceção || Novembro de 2025 || Estudo autónomo das tecnologias (React e Firebase) e pesquisa de mercado
+  Row 7: Desenvolvimento || Dezembro de 2025 || Preparação do ambiente de trabalho e primeiros testes de código
+  Row 8: Desenvolvimento || Janeiro de 2026 || Escolha do cliente (Kid to Kid Braga) e análise dos requisitos do site
+  Row 9: Desenvolvimento || Janeiro de 2026 || Início da Programação: Página Inicial (Home), Menus e Rodapé
+  Row 10: Desenvolvimento || Fevereiro de 2026 || Implementação do Login, Registo e Área de Cliente
+  Row 11: Desenvolvimento || Fevereiro de 2026 || Criação do Catálogo de Produtos e Filtros de pesquisa
+  Row 12: Desenvolvimento || Março de 2026 || Desenvolvimento do Carrinho de Compras e Pagamentos
+  Row 13: Desenvolvimento || Março de 2026 || Criação do Backoffice (Admin) para gestão de stock
+  Row 14: Desenvolvimento || Abril de 2026 || Melhoria da qualidade do projeto, otimização do código e ajustes visuais
+  Row 15: Desenvolvimento || Abril de 2026 || Testes finais, correção de erros (Debugging) e acabamentos
+  Row 16: Autoavaliação    e Relatório || Janeiro de 2026 || Defesa Intermédia da PAP
+  Row 17: Autoavaliação    e Relatório || Maio de 2026 || Conclusão do projeto e entrega do relatório
+  Row 18: Autoavaliação    e Relatório || Julho de 2026 || Defesa final da PAP
+
+--- Table 3 ---
+  Row 0: Recursos || Recursos || Recursos
+  Row 1: Humanos || Materiais || Financeiros
+  Row 2: Ana Marta Vilaverde ||  || 
+  Row 3: Manuel Ferreira ||  || 
+
+--- Table 4 ---
+  Row 0: Campo || Descrição || Tipo de Dados
+  Row 1: id || Identificador único do produto || string
+  Row 2: title || Título do produto || string
+  Row 3: description || Descrição detalhada do artigo || string
+  Row 4: price || Preço atual em euros || number
+  Row 5: originalPrice || Preço original antes de qualquer desconto || number (opcional)
+  Row 6: category || Categoria principal à qual pertence || string
+  Row 7: subcategory || Subcategoria específica do artigo || string (opcional)
+  Row 8: brand || Marca do produto || string
+  Row 9: size || Tamanho do artigo || string
+  Row 10: condition || Estado de conservação do produto || string ('novo', 'como-novo', 'bom', 'usado')
+  Row 11: gender || Género alvo do artigo || string ('menina', 'menino', 'unissexo')
+  Row 12: color || Cor principal do produto || string
+  Row 13: season || Estação do ano mais adequada || string
+  Row 14: images || Array de URLs das fotografias do produto || array
+  Row 15: stock || Quantidade disponível em armazém/loja || number
+  Row 16: isReserved || Indica se o produto está reservado no momento || boolean
+  Row 17: sku || Código de referência interno (Stock Keeping Unit) || string
+  Row 18: rating || Média das avaliações dadas pelos clientes || number
+  Row 19: reviewCount || Número total de comentários/avaliações recebidos || number
+  Row 20: createdAt || Data e hora de criação do registo || timestamp
+  Row 21: updatedAt || Data e hora da última atualização do registo || timestamp
+
+--- Table 5 ---
+  Row 0: Coleção || Descrição
+  Row 1: coupons || Guarda cupões com regras estritas (valor mínimo, limites de uso, validades).
+  Row 2: promos_log || Regista o histórico de campanhas de newsletter enviadas.
+  Row 3: reviewReports || Armazena as denúncias de utilizadores a avaliações abusivas (spam).
+  Row 4: audit_logs || Coleção isolada para manter registos de segurança do sistema.
+  Row 5: analytics || Coleção isolada dedicada a métricas de vendas, otimizando a performance da base de dados principal.
+
+--- Table 6 ---
+  Row 0: Campo || Descrição || Tipo de Dados
+  Row 1: uid || Identificador único associado ao Firebase Authentication || string
+  Row 2: email || Endereço de correio eletrónico do utilizador || string
+  Row 3: firstName || Primeiro nome do utilizador || string
+  Row 4: lastName || Apelido do utilizador || string
+  Row 5: displayName || Nome completo de exibição na interface || string
+  Row 6: phone || Número de telefone de contacto || string
+  Row 7: photoURL || URL da fotografia de perfil (Avatar) guardada no Storage || string
+  Row 8: newsletter || Indica se o utilizador subscreveu a newsletter da loja || boolean
+  Row 9: role || Define o nível de acesso e permissões ('customer' ou 'admin') || string
+
+--- Table 7 ---
+  Row 0: Campo || Descrição
+  Row 1: addresses || Sub-coleção dentro de cada documento users que permite ao cliente guardar múltiplas moradas de envio de forma organizada.
+
+--- Table 8 ---
+  Row 0: Campo || Descrição || Tipo de Dados
+  Row 1: id || Identificador único da encomenda || string
+  Row 2: userId || Identificador único do cliente (referência ao Auth/users) || string
+  Row 3: userEmail || Endereço de correio eletrónico do cliente || string
+  Row 4: items || Lista com o detalhe de todos os produtos comprados || array (de objetos)
+  Row 5: subtotal || Valor base da encomenda (soma dos produtos) || number
+  Row 6: shippingCost || Custo aplicado aos portes de envio || number
+  Row 7: total || Valor final da encomenda (subtotal + portes - descontos) || number
+  Row 8: status || Estado logístico atual da encomenda || string ('pending', 'paid', 'shipped', 'delivered', 'cancelled')
+  Row 9: paymentMethod || Método escolhido/utilizado para o pagamento || string
+  Row 10: paymentStatus || Estado da transação financeira || string
+  Row 11: stripeSessionId || Identificador da sessão de pagamento segura gerada via Stripe || string
+  Row 12: shippingAddress || Dados de morada de envio gravados de forma estática (garante a imutabilidade do histórico fiscal) || object
+  Row 13: billingAddress || Dados de morada de faturação gravados de forma estática || object

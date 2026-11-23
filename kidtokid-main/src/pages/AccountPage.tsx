@@ -15,6 +15,7 @@ import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 import type { Address } from "@/src/services/authService"
 import { getUserOrders, getOrderStatusText as getOrderStatusLabel, type Order } from "@/src/services/orderService"
+import { deleteAccountWithTimeout } from "@/src/lib/cloudFunctions"
 import {
     User,
     Package,
@@ -1217,38 +1218,8 @@ export default function AccountPage() {
                                                 const confirm2 = window.confirm("ÚLTIMA CONFIRMAÇÃO: Todos os teus dados serão eliminados permanentemente. Continuar?")
                                                 if (!confirm2) return
                                                 try {
-                                                    // Delete user data from Firestore
-                                                    const { doc, collection, query, where, getDocs, writeBatch } = await import("firebase/firestore")
-                                                    const { deleteUser } = await import("firebase/auth")
-                                                    const { db } = await import("@/src/lib/firebase")
                                                     if (user) {
-                                                        const batch = writeBatch(db)
-                                                        
-                                                        // Delete user profile doc
-                                                        batch.delete(doc(db, "users", user.uid))
-                                                        
-                                                        // Delete user favorites
-                                                        try {
-                                                            const favsSnap = await getDocs(query(collection(db, "favorites"), where("userId", "==", user.uid)))
-                                                            favsSnap.docs.forEach(d => batch.delete(d.ref))
-                                                        } catch { /* ignore */ }
-                                                        
-                                                        // Delete user reviews
-                                                        try {
-                                                            const reviewsSnap = await getDocs(query(collection(db, "reviews"), where("userId", "==", user.uid)))
-                                                            reviewsSnap.docs.forEach(d => batch.delete(d.ref))
-                                                        } catch { /* ignore */ }
-                                                        
-                                                        // Delete newsletter subscription
-                                                        try {
-                                                            const nlSnap = await getDocs(query(collection(db, "newsletter"), where("email", "==", user.email)))
-                                                            nlSnap.docs.forEach(d => batch.delete(d.ref))
-                                                        } catch { /* ignore */ }
-                                                        
-                                                        await batch.commit()
-                                                        
-                                                        // Delete auth account
-                                                        await deleteUser(user)
+                                                        await deleteAccountWithTimeout()
                                                         toast.success("Conta eliminada com sucesso")
                                                         navigate("/")
                                                     }

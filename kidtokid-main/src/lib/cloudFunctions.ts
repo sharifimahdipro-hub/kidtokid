@@ -7,7 +7,7 @@
  * PADRÃO:
  * - callCloudFunction() envolve httpsCallable com Promise.race contra um timeout (default 30s)
  * - Região: europe-west1 (hardcoded — tem de ser consistente com functions/src/index.ts)
- * - Funções expostas: createSecureOrder, setAdminClaims, sendPromoNewsletter, customPasswordReset
+ * - Funções expostas: createSecureOrder, cancelOrder, deleteAccount, setAdminClaims, sendPromoNewsletter, customPasswordReset
  *
  * SEGURANÇA:
  * - O Firebase SDK anexa automaticamente o token de autenticação do utilizador em cada chamada
@@ -75,6 +75,20 @@ export async function createSecureOrderWithTimeout(
     orderData,
     timeoutMs
   )
+}
+
+/**
+ * Convenience wrapper for cancelling an order and restoring its stock server-side
+ */
+export async function cancelOrderWithTimeout(orderId: string, timeoutMs?: number) {
+  return callCloudFunction<{ success: boolean }>("cancelOrder", { orderId }, timeoutMs)
+}
+
+/**
+ * Convenience wrapper for deleting the authenticated user's account and data
+ */
+export async function deleteAccountWithTimeout(timeoutMs?: number) {
+  return callCloudFunction<{ success: boolean }>("deleteAccount", {}, timeoutMs)
 }
 
 /**

@@ -1,4 +1,62 @@
 "use strict";
+/**
+ * FICHEIRO: functions/src/index.ts
+ * FUNÇÃO: Backend completo do KidToKid — todas as Cloud Functions (Firebase Functions v1/v2).
+ * PROBLEMA: Nenhum bug de segurança no fluxo de pagamento. O sistema implementa corretamente:
+ *           - Criação de encomendas com status "pending" (nunca "paid" diretamente)
+ *           - Webhook Stripe com verificação de assinatura (Stripe-Signature)
+ *           - Deduplicação de eventos webhook via coleção "stripe_webhook_events"
+ *           - Auto-cancelamento de sessões expiradas + scheduled cleanup horário
+ *           - Restauração de stock idempotente (flag _stockRestored)
+ * PRIORIDADE: CRÍTICA (toda a lógica de negócio server-side)
+ *
+ * FUNÇÕES EXPORTADAS (15):
+ *
+ * AUTH:
+ * - onUserCreated: Auto-set admin claims + welcome email (Auth trigger)
+ * - setAdminClaims: Callable — admin self-claim para emails na whitelist
+ *
+ * ENCOMENDAS:
+ * - createSecureOrder: Callable — criação atómica com validação de preços, stock e cupões
+ * - onNewOrder: Firestore trigger — envia emails ao admin e cliente
+ * - onOrderUpdate: Firestore trigger — emails de status + restauração de stock em cancelamento
+ *
+ * STRIPE:
+ * - createStripeCheckoutSession: Callable — cria sessão Stripe para encomenda existente
+ * - stripeWebhook: HTTP — recebe webhooks Stripe (completed, failed, expired, refunded)
+ * - refundOrder: Callable — reembolso Stripe automático com restauração de stock
+ *
+ * EMAIL:
+ * - customPasswordReset: Callable — password reset via SMTP branded
+ * - onNewContact: Firestore trigger — notifica admin de mensagens de contacto
+ * - onNewReview: Firestore trigger — notifica admin de novas avaliações
+ *
+ * NEWSLETTER:
+ * - onNewsletterSubscribe: Firestore trigger — email de boas-vindas
+ * - sendPromoNewsletter: Callable — envio em bulk de promoções (admin only)
+ *
+ * CUPÕES:
+ * - validateCouponCode: Callable — validação server-side sem expor coleção "coupons"
+ *
+ * AUTOMAÇÃO:
+ * - removePurchasedProductAndImage: Firestore trigger (v2) — remove produto e imagens após pagamento
+ * - cleanupExpiredOrders: Scheduled (hourly) — cancela orders pendentes com >1h
+ *
+ * SEGURANÇA:
+ * - Todas as funções callable verificam context.auth
+ * - Admin verificado por custom claims (token.admin === true) ou whitelist ADMIN_EMAILS
+ * - Webhook Stripe verifica assinatura com STRIPE_WEBHOOK_SECRET
+ * - Rate limiting: máx 5 encomendas/hora por utilizador
+ * - Input sanitization: escapeHtml() em todos os templates de email
+ * - Stock decrementado em Transaction atómica (previne race conditions)
+ *
+ * VARIÁVEIS DE AMBIENTE (functions/.env):
+ * - STRIPE_SECRET: Chave secreta Stripe
+ * - STRIPE_WEBHOOK_SECRET: Secret para verificação de webhook (whsec_...)
+ * - EMAIL_USER: Email Gmail para SMTP
+ * - EMAIL_PASS: App password Gmail
+ * - ADMIN_EMAIL: Email do administrador para notificações
+ */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -36,7 +94,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.cleanupExpiredOrders = exports.removePurchasedProductAndImage = exports.sendPromoNewsletter = exports.onNewsletterSubscribe = exports.refundOrder = exports.onNewReview = exports.onNewContact = exports.onOrderUpdate = exports.stripeWebhook = exports.createStripeCheckoutSession = exports.onNewOrder = exports.createSecureOrder = exports.customPasswordReset = exports.validateCouponCode = exports.setAdminClaims = exports.onUserCreated = void 0;
+exports.cleanupExpiredOrders = exports.removePurchasedProductAndImage = exports.sendPromoNewsletter = exports.onNewsletterSubscribe = exports.refundOrder = exports.onNewReview = exports.onNewContact = exports.onOrderUpdate = exports.stripeWebhook = exports.createStripeCheckoutSession = exports.onNewOrder = exports.deleteAccount = exports.cancelOrder = exports.createSecureOrder = exports.customPasswordReset = exports.validateCouponCode = exports.setAdminClaims = exports.onUserCreated = void 0;
 const functions = __importStar(require("firebase-functions/v1"));
 const firestore_1 = require("firebase-functions/v2/firestore");
 const admin = __importStar(require("firebase-admin"));
@@ -603,6 +661,92 @@ exports.createSecureOrder = functions.region("europe-west1").https.onCall(async 
         functions.logger.error("Order creation failed:", (error === null || error === void 0 ? void 0 : error.message) || error);
         throw new functions.https.HttpsError("internal", "Erro ao criar encomenda. Tente novamente.");
     }
+});
+// ======================================
+// CANCEL ORDER
+// ======================================
+// Cancels a pending order and restores stock atomically with Admin SDK privileges.
+exports.cancelOrder = functions.region("europe-west1").https.onCall(async (data, context) => {
+    var _a;
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "É necessário estar autenticado.");
+    }
+    const orderId = (_a = data.orderId) === null || _a === void 0 ? void 0 : _a.trim();
+    if (!orderId) {
+        throw new functions.https.HttpsError("invalid-argument", "ID da encomenda inválido.");
+    }
+    const orderRef = db.collection("orders").doc(orderId);
+    await db.runTransaction(async (transaction) => {
+        const orderSnap = await transaction.get(orderRef);
+        if (!orderSnap.exists) {
+            throw new functions.https.HttpsError("not-found", "Encomenda não encontrada.");
+        }
+        const order = orderSnap.data();
+        if (order.userId !== context.auth.uid) {
+            throw new functions.https.HttpsError("permission-denied", "Não tem permissão para cancelar esta encomenda.");
+        }
+        if (order.status !== "pending") {
+            throw new functions.https.HttpsError("failed-precondition", "Esta encomenda já não pode ser cancelada.");
+        }
+        const quantities = new Map();
+        for (const item of order.items || []) {
+            if (item.productId && Number.isInteger(item.quantity) && item.quantity > 0) {
+                quantities.set(item.productId, (quantities.get(item.productId) || 0) + item.quantity);
+            }
+        }
+        const productRefs = [...quantities.keys()].map((productId) => db.collection("products").doc(productId));
+        const productSnapshots = [];
+        for (const productRef of productRefs) {
+            productSnapshots.push(await transaction.get(productRef));
+        }
+        transaction.update(orderRef, {
+            status: "cancelled",
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        productSnapshots.forEach((productSnap, index) => {
+            if (productSnap.exists) {
+                transaction.update(productRefs[index], {
+                    stock: admin.firestore.FieldValue.increment(quantities.get(productRefs[index].id) || 0),
+                });
+            }
+        });
+    });
+    return { success: true };
+});
+// ======================================
+// DELETE ACCOUNT
+// ======================================
+// Deletes user-owned data and the Auth account with Admin SDK privileges.
+async function deleteDocumentsInBatches(documents) {
+    for (let index = 0; index < documents.length; index += 450) {
+        const batch = db.batch();
+        documents.slice(index, index + 450).forEach((document) => batch.delete(document));
+        await batch.commit();
+    }
+}
+exports.deleteAccount = functions.region("europe-west1").https.onCall(async (_data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError("unauthenticated", "É necessário estar autenticado.");
+    }
+    const userId = context.auth.uid;
+    const userEmail = context.auth.token.email;
+    const collections = ["favorites", "reviews", "reviewVotes", "reviewReports"];
+    for (const collectionName of collections) {
+        const snapshot = await db.collection(collectionName).where("userId", "==", userId).get();
+        await deleteDocumentsInBatches(snapshot.docs.map((document) => document.ref));
+    }
+    const notifications = await db.collection("users").doc(userId).collection("notifications").get();
+    await deleteDocumentsInBatches(notifications.docs.map((notification) => notification.ref));
+    const cartItems = await db.collection("carts").doc(userId).collection("items").get();
+    await deleteDocumentsInBatches(cartItems.docs.map((item) => item.ref));
+    const batch = db.batch();
+    batch.delete(db.collection("carts").doc(userId));
+    batch.delete(db.collection("users").doc(userId));
+    if (userEmail)
+        batch.delete(db.collection("newsletter").doc(userEmail));
+    await batch.commit();
+    await admin.auth().deleteUser(userId);
+    return { success: true };
 });
 // Trigger: New order created
 exports.onNewOrder = functions.region("europe-west1").firestore

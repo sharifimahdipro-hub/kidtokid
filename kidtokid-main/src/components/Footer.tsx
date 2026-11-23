@@ -60,7 +60,7 @@ export function Footer() {
               <img src="/logo.png" alt={settings.storeName} className="h-8 md:h-10" />
             </div>
             <p className="mb-3 md:mb-4 text-sm text-muted-foreground">
-              Roupa e artigos de criança com nova vida, a preços amigos.
+              Roupa e artigos de criança com nova vida, a preço de amigo.
             </p>
             <div className="flex gap-4 justify-center sm:justify-start">
               <a
@@ -167,13 +167,13 @@ export function Footer() {
           {/* Newsletter & Info */}
           <div className="text-center sm:text-left">
             <h4 className="mb-3 md:mb-4 font-semibold text-sm md:text-base text-gray-800 dark:text-gray-100">Newsletter</h4>
-            <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400 mb-3">Recebe novidades e promoções exclusivas!</p>
+            <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400 mb-3">Receba novidades e promoções exclusivas!</p>
             <form onSubmit={handleNewsletterSubscribe} className="flex gap-2 max-w-xs mx-auto sm:mx-0">
               <input
                 type="email"
                 value={newsletterEmail}
                 onChange={(e) => setNewsletterEmail(e.target.value)}
-                placeholder="O teu email"
+                placeholder="O seu email"
                 className="flex-1 min-w-0 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:border-blue-600 focus:ring-1 focus:ring-blue-600 focus:outline-none dark:text-gray-100"
                 disabled={isSubscribing}
               />
@@ -205,4 +205,3 @@ export function Footer() {
     </footer>
   )
 }
-

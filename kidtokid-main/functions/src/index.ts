@@ -431,6 +431,7 @@ export const createSecureOrder = functions.region("europe-west1").https.onCall(
         "unauthenticated",
         "É necessário estar autenticado para criar uma encomenda."
       );
+
     }
 
     const userId = context.auth.uid;
@@ -770,6 +771,110 @@ export const createSecureOrder = functions.region("europe-west1").https.onCall(
         "Erro ao criar encomenda. Tente novamente."
       );
     }
+  }
+);
+
+// ======================================
+// CANCEL ORDER
+// ======================================
+// Cancels a pending order and restores stock atomically with Admin SDK privileges.
+export const cancelOrder = functions.region("europe-west1").https.onCall(
+  async (data: { orderId?: string }, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "É necessário estar autenticado.");
+    }
+
+    const orderId = data.orderId?.trim();
+    if (!orderId) {
+      throw new functions.https.HttpsError("invalid-argument", "ID da encomenda inválido.");
+    }
+
+    const orderRef = db.collection("orders").doc(orderId);
+    await db.runTransaction(async (transaction) => {
+      const orderSnap = await transaction.get(orderRef);
+      if (!orderSnap.exists) {
+        throw new functions.https.HttpsError("not-found", "Encomenda não encontrada.");
+      }
+
+      const order = orderSnap.data()!;
+      if (order.userId !== context.auth!.uid) {
+        throw new functions.https.HttpsError("permission-denied", "Não tem permissão para cancelar esta encomenda.");
+      }
+      if (order.status !== "pending") {
+        throw new functions.https.HttpsError("failed-precondition", "Esta encomenda já não pode ser cancelada.");
+      }
+
+      const quantities = new Map<string, number>();
+      for (const item of order.items || []) {
+        if (item.productId && Number.isInteger(item.quantity) && item.quantity > 0) {
+          quantities.set(item.productId, (quantities.get(item.productId) || 0) + item.quantity);
+        }
+      }
+
+      const productRefs = [...quantities.keys()].map((productId) => db.collection("products").doc(productId));
+      const productSnapshots = [];
+      for (const productRef of productRefs) {
+        productSnapshots.push(await transaction.get(productRef));
+      }
+
+      transaction.update(orderRef, {
+        status: "cancelled",
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      productSnapshots.forEach((productSnap, index) => {
+        if (productSnap.exists) {
+          transaction.update(productRefs[index], {
+            stock: admin.firestore.FieldValue.increment(quantities.get(productRefs[index].id) || 0),
+          });
+        }
+      });
+    });
+
+    return { success: true };
+  }
+);
+
+// ======================================
+// DELETE ACCOUNT
+// ======================================
+// Deletes user-owned data and the Auth account with Admin SDK privileges.
+async function deleteDocumentsInBatches(documents: admin.firestore.DocumentReference[]): Promise<void> {
+  for (let index = 0; index < documents.length; index += 450) {
+    const batch = db.batch();
+    documents.slice(index, index + 450).forEach((document) => batch.delete(document));
+    await batch.commit();
+  }
+}
+
+export const deleteAccount = functions.region("europe-west1").https.onCall(
+  async (_data: unknown, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError("unauthenticated", "É necessário estar autenticado.");
+    }
+
+    const userId = context.auth.uid;
+    const userEmail = context.auth.token.email;
+    const collections = ["favorites", "reviews", "reviewVotes", "reviewReports"];
+
+    for (const collectionName of collections) {
+      const snapshot = await db.collection(collectionName).where("userId", "==", userId).get();
+      await deleteDocumentsInBatches(snapshot.docs.map((document) => document.ref));
+    }
+
+    const notifications = await db.collection("users").doc(userId).collection("notifications").get();
+    await deleteDocumentsInBatches(notifications.docs.map((notification) => notification.ref));
+
+    const cartItems = await db.collection("carts").doc(userId).collection("items").get();
+    await deleteDocumentsInBatches(cartItems.docs.map((item) => item.ref));
+    const batch = db.batch();
+    batch.delete(db.collection("carts").doc(userId));
+    batch.delete(db.collection("users").doc(userId));
+    if (userEmail) batch.delete(db.collection("newsletter").doc(userEmail));
+    await batch.commit();
+
+    await admin.auth().deleteUser(userId);
+    return { success: true };
   }
 );
 

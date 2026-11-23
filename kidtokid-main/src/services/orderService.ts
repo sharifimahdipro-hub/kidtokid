@@ -15,7 +15,7 @@
  * - getUserOrders() filtra por userId do utilizador autenticado (Firestore rules reforçam isto)
  * - getOrderById() verifica ownership antes de retornar dados
  * - cancelOrder() só permite cancelar encomendas com status "pending" (pagas requerem reembolso via admin)
- * - cancelOrder() restaura stock via batch write (Firestore rules permitem esta operação ao owner)
+ * - cancelOrder() restaura stock via Cloud Function com Admin SDK
  * - Firestore rules: "allow create: if false" — encomendas SÓ podem ser criadas via Cloud Function
  */
 
@@ -27,12 +27,10 @@ import {
   query,
   where,
   orderBy,
-  serverTimestamp,
-  writeBatch,
-  increment,
   type DocumentData,
 } from "firebase/firestore"
 import { db, auth } from "@/src/lib/firebase"
+import { cancelOrderWithTimeout } from "@/src/lib/cloudFunctions"
 
 // Types
 
@@ -255,26 +253,7 @@ export async function cancelOrder(orderId: string): Promise<void> {
     )
   }
 
-  const batch = writeBatch(db)
-
-  batch.update(docRef, {
-    status: "cancelled",
-    updatedAt: serverTimestamp(),
-  })
-
-  // Restore stock when order is cancelled
-  if (order.items && order.items.length > 0) {
-    for (const item of order.items) {
-      if (item.productId) {
-        const productRef = doc(db, "products", item.productId)
-        batch.update(productRef, {
-          stock: increment(item.quantity)
-        })
-      }
-    }
-  }
-
-  await batch.commit()
+  await cancelOrderWithTimeout(orderId)
 }
 
 // Status translation
